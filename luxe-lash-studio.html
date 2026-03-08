@@ -1,0 +1,1920 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LASHÉ — Premium Eyelash Extensions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Jost:wght@200;300;400&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════════
+   CSS VARIABLES & RESET
+   ═══════════════════════════════════════ */
+:root {
+  --black: #0a0a0a;
+  --black-soft: #111111;
+  --black-card: #161616;
+  --gold: #C9A84C;
+  --gold-light: #E8C96A;
+  --gold-muted: #8a6e30;
+  --champagne: #F5E6C8;
+  --ivory: #FAF6F0;
+  --white: #ffffff;
+  --text-muted: #888888;
+  --font-display: 'Cormorant Garamond', Georgia, serif;
+  --font-body: 'Jost', 'Helvetica Neue', sans-serif;
+}
+
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  font-family: var(--font-body);
+  font-weight: 300;
+  background: var(--black);
+  color: var(--ivory);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Noise texture overlay for dark sections */
+.noise-overlay {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 256px 256px;
+}
+
+/* ═══════════════════════════════════════
+   SCROLL ANIMATIONS
+   ═══════════════════════════════════════ */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+.reveal-delay-5 { transition-delay: 0.5s; }
+.reveal-delay-6 { transition-delay: 0.6s; }
+
+/* ═══════════════════════════════════════
+   NAVIGATION
+   ═══════════════════════════════════════ */
+.nav {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  z-index: 1000;
+  padding: 1.5rem 3rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background 0.4s ease, padding 0.4s ease, box-shadow 0.4s ease;
+}
+
+.nav.scrolled {
+  background: rgba(10, 10, 10, 0.97);
+  padding: 1rem 3rem;
+  box-shadow: 0 1px 30px rgba(201, 168, 76, 0.06);
+  backdrop-filter: blur(20px);
+}
+
+.nav-logo {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-weight: 400;
+  color: var(--gold);
+  letter-spacing: 0.15em;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 2.5rem;
+  list-style: none;
+}
+
+.nav-links a {
+  font-family: var(--font-body);
+  font-weight: 300;
+  font-size: 0.85rem;
+  color: var(--ivory);
+  text-decoration: none;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  position: relative;
+  transition: color 0.3s;
+}
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -4px; left: 0;
+  width: 0; height: 1px;
+  background: var(--gold);
+  transition: width 0.3s ease;
+}
+
+.nav-links a:hover { color: var(--gold); }
+.nav-links a:hover::after { width: 100%; }
+
+.nav-cta {
+  font-family: var(--font-body) !important;
+  font-weight: 300 !important;
+  font-size: 0.8rem !important;
+  letter-spacing: 0.15em !important;
+  text-transform: uppercase !important;
+  padding: 0.65rem 1.8rem !important;
+  border: 1px solid var(--gold) !important;
+  border-radius: 50px !important;
+  background: var(--gold) !important;
+  color: var(--black) !important;
+  cursor: pointer;
+  transition: all 0.4s ease !important;
+  text-decoration: none !important;
+}
+
+.nav-cta:hover {
+  background: transparent !important;
+  color: var(--gold) !important;
+  box-shadow: 0 0 25px rgba(201, 168, 76, 0.3) !important;
+}
+
+.nav-cta::after { display: none !important; }
+
+/* Hamburger */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  z-index: 1001;
+  background: none;
+  border: none;
+  padding: 5px;
+}
+
+.hamburger span {
+  width: 28px;
+  height: 1.5px;
+  background: var(--gold);
+  transition: all 0.3s ease;
+  display: block;
+}
+
+.hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+.hamburger.active span:nth-child(2) { opacity: 0; }
+.hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+/* Mobile menu */
+.mobile-menu {
+  display: none;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100vh;
+  background: rgba(10, 10, 10, 0.98);
+  z-index: 999;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.mobile-menu.open {
+  display: flex;
+  opacity: 1;
+}
+
+.mobile-menu a {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  color: var(--ivory);
+  text-decoration: none;
+  letter-spacing: 0.1em;
+  transition: color 0.3s;
+}
+
+.mobile-menu a:hover { color: var(--gold); }
+
+/* ═══════════════════════════════════════
+   BUTTONS
+   ═══════════════════════════════════════ */
+.btn {
+  display: inline-block;
+  font-family: var(--font-body);
+  font-weight: 300;
+  font-size: 0.85rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  padding: 1rem 2.8rem;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.4s ease;
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-gold {
+  background: var(--gold);
+  color: var(--black);
+  border: 1px solid var(--gold);
+}
+
+.btn-gold:hover {
+  background: var(--gold-light);
+  box-shadow: 0 0 35px rgba(201, 168, 76, 0.35), 0 0 80px rgba(201, 168, 76, 0.1);
+  transform: translateY(-2px);
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--gold);
+  border: 1px solid var(--gold);
+}
+
+.btn-outline:hover {
+  background: var(--gold);
+  color: var(--black);
+  box-shadow: 0 0 35px rgba(201, 168, 76, 0.25);
+  transform: translateY(-2px);
+}
+
+/* Shimmer effect */
+.btn::before {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%;
+  width: 100%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+  transition: left 0.6s ease;
+}
+
+.btn:hover::before {
+  left: 100%;
+}
+
+/* ═══════════════════════════════════════
+   HERO SECTION
+   ═══════════════════════════════════════ */
+.hero {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: var(--black);
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 60% 50% at 70% 40%, rgba(201, 168, 76, 0.08) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 60% at 20% 80%, rgba(201, 168, 76, 0.04) 0%, transparent 60%),
+    var(--black);
+}
+
+/* Gold particle canvas */
+#particles-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  max-width: 900px;
+  padding: 2rem;
+}
+
+.hero-eyebrow {
+  font-family: var(--font-body);
+  font-weight: 300;
+  font-size: 0.8rem;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 2rem;
+  opacity: 0;
+  animation: fadeUp 1s 0.3s forwards;
+}
+
+.hero-title {
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: clamp(3rem, 8vw, 6.5rem);
+  line-height: 1.05;
+  color: var(--ivory);
+  margin-bottom: 1.8rem;
+  opacity: 0;
+  animation: fadeUp 1s 0.5s forwards;
+}
+
+.hero-title em {
+  font-style: italic;
+  color: var(--gold);
+}
+
+.hero-sub {
+  font-family: var(--font-body);
+  font-weight: 200;
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  color: var(--text-muted);
+  max-width: 600px;
+  margin: 0 auto 3rem;
+  line-height: 1.7;
+  opacity: 0;
+  animation: fadeUp 1s 0.7s forwards;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 1.2rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  opacity: 0;
+  animation: fadeUp 1s 0.9s forwards;
+}
+
+.hero-scroll-indicator {
+  position: absolute;
+  bottom: 3rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  opacity: 0;
+  animation: fadeUp 1s 1.2s forwards;
+}
+
+.hero-scroll-indicator span {
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.scroll-line {
+  width: 1px;
+  height: 40px;
+  background: linear-gradient(to bottom, var(--gold), transparent);
+  animation: scrollPulse 2s ease-in-out infinite;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes scrollPulse {
+  0%, 100% { opacity: 0.3; transform: scaleY(0.6); }
+  50% { opacity: 1; transform: scaleY(1); }
+}
+
+/* ═══════════════════════════════════════
+   SECTION STYLING
+   ═══════════════════════════════════════ */
+section {
+  position: relative;
+}
+
+.section-pad {
+  padding: 8rem 2rem;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.section-eyebrow {
+  font-family: var(--font-body);
+  font-weight: 300;
+  font-size: 0.75rem;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 1rem;
+}
+
+.section-title {
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: clamp(2.2rem, 5vw, 3.8rem);
+  color: var(--ivory);
+  line-height: 1.15;
+  margin-bottom: 1.5rem;
+}
+
+.section-subtitle {
+  font-family: var(--font-body);
+  font-weight: 200;
+  font-size: 1.05rem;
+  color: var(--text-muted);
+  max-width: 600px;
+  line-height: 1.7;
+}
+
+.gold-line {
+  width: 60px;
+  height: 1px;
+  background: var(--gold);
+  margin: 1.5rem 0;
+}
+
+/* ═══════════════════════════════════════
+   ABOUT / BRAND STORY
+   ═══════════════════════════════════════ */
+.about {
+  background: var(--black-soft);
+  position: relative;
+  overflow: hidden;
+}
+
+.about::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold-muted), transparent);
+}
+
+.about-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5rem;
+  align-items: center;
+}
+
+.about-text p {
+  font-family: var(--font-display);
+  font-size: clamp(1.3rem, 2.5vw, 1.7rem);
+  font-weight: 300;
+  font-style: italic;
+  color: var(--champagne);
+  line-height: 1.8;
+}
+
+.about-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2.5rem;
+}
+
+.stat-item {
+  text-align: center;
+  padding: 2rem;
+  border: 1px solid rgba(201, 168, 76, 0.15);
+  border-radius: 4px;
+  transition: all 0.4s ease;
+}
+
+.stat-item:hover {
+  border-color: var(--gold);
+  background: rgba(201, 168, 76, 0.03);
+  transform: translateY(-4px);
+}
+
+.stat-number {
+  font-family: var(--font-display);
+  font-size: 2.4rem;
+  font-weight: 300;
+  color: var(--gold);
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.stat-label {
+  font-size: 0.8rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+/* ═══════════════════════════════════════
+   SERVICES SECTION
+   ═══════════════════════════════════════ */
+.services {
+  background: var(--black);
+}
+
+.services-header {
+  text-align: center;
+  margin-bottom: 5rem;
+}
+
+.services-header .section-subtitle {
+  margin: 0 auto;
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+.service-card {
+  background: var(--black-card);
+  border: 1px solid rgba(201, 168, 76, 0.08);
+  border-radius: 4px;
+  overflow: hidden;
+  position: relative;
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.service-card:hover {
+  border-color: rgba(201, 168, 76, 0.3);
+  transform: translateY(-8px);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.4), 0 0 40px rgba(201, 168, 76, 0.06);
+}
+
+.service-image {
+  width: 100%;
+  height: 260px;
+  position: relative;
+  overflow: hidden;
+}
+
+.service-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.service-img-blink {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  transition: opacity 0.6s ease-in-out;
+}
+
+.service-card:hover .service-img-blink {
+  opacity: 1;
+}
+
+.service-body {
+  padding: 2rem;
+}
+
+.service-name {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  font-weight: 400;
+  color: var(--ivory);
+  margin-bottom: 0.8rem;
+}
+
+.service-desc {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  line-height: 1.7;
+  margin-bottom: 1.5rem;
+}
+
+.service-pricing {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 1.2rem;
+  border-top: 1px solid rgba(201, 168, 76, 0.1);
+}
+
+.service-price {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  color: var(--gold);
+}
+
+.service-price small {
+  display: block;
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-top: 2px;
+}
+
+.service-link {
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gold);
+  text-decoration: none;
+  transition: all 0.3s;
+  position: relative;
+}
+
+.service-link::after {
+  content: ' →';
+  transition: transform 0.3s;
+  display: inline-block;
+}
+
+.service-link:hover::after {
+  transform: translateX(4px);
+}
+
+/* ═══════════════════════════════════════
+   PRICING SECTION
+   ═══════════════════════════════════════ */
+.pricing {
+  background: var(--black-soft);
+  position: relative;
+}
+
+.pricing::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold-muted), transparent);
+}
+
+.pricing-header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.pricing-header .section-subtitle {
+  margin: 0 auto;
+}
+
+.pricing-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 0;
+  margin-bottom: 3rem;
+  border: 1px solid rgba(201, 168, 76, 0.2);
+  border-radius: 4px;
+  overflow: hidden;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 3rem;
+}
+
+.pricing-tab {
+  flex: 1;
+  padding: 1rem 1.5rem;
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  font-family: var(--font-body);
+  font-weight: 300;
+  font-size: 0.8rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.pricing-tab.active {
+  background: var(--gold);
+  color: var(--black);
+}
+
+.pricing-tab:hover:not(.active) {
+  color: var(--gold);
+}
+
+.pricing-panel {
+  display: none;
+}
+
+.pricing-panel.active {
+  display: block;
+}
+
+.pricing-table {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.pricing-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.3rem 0;
+  border-bottom: 1px solid rgba(201, 168, 76, 0.08);
+  transition: all 0.3s;
+}
+
+.pricing-row:hover {
+  padding-left: 0.5rem;
+  border-bottom-color: rgba(201, 168, 76, 0.2);
+}
+
+.pricing-row .name {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  color: var(--ivory);
+}
+
+.pricing-row .price {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  color: var(--gold);
+}
+
+.pricing-note {
+  text-align: center;
+  margin-top: 3rem;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  font-style: italic;
+  max-width: 550px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.7;
+}
+
+/* ═══════════════════════════════════════
+   HOW IT WORKS
+   ═══════════════════════════════════════ */
+.journey {
+  background: var(--black);
+}
+
+.journey-header {
+  text-align: center;
+  margin-bottom: 5rem;
+}
+
+.journey-header .section-subtitle {
+  margin: 0 auto;
+}
+
+.journey-steps {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+  position: relative;
+}
+
+.journey-steps::before {
+  content: '';
+  position: absolute;
+  top: 40px;
+  left: 10%;
+  width: 80%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold-muted), var(--gold-muted), transparent);
+}
+
+.step {
+  text-align: center;
+  position: relative;
+}
+
+.step-number {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: 1px solid var(--gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.8rem;
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  color: var(--gold);
+  background: var(--black);
+  position: relative;
+  z-index: 1;
+  transition: all 0.4s ease;
+}
+
+.step:hover .step-number {
+  background: var(--gold);
+  color: var(--black);
+  box-shadow: 0 0 30px rgba(201, 168, 76, 0.25);
+}
+
+.step-title {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  color: var(--ivory);
+  margin-bottom: 0.8rem;
+}
+
+.step-desc {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+  max-width: 220px;
+  margin: 0 auto;
+}
+
+/* ═══════════════════════════════════════
+   GALLERY
+   ═══════════════════════════════════════ */
+.gallery {
+  background: var(--black-soft);
+  position: relative;
+}
+
+.gallery::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold-muted), transparent);
+}
+
+.gallery-header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.gallery-header .section-subtitle {
+  margin: 0 auto;
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: auto auto;
+  gap: 1.5rem;
+}
+
+.gallery-item {
+  position: relative;
+  overflow: hidden;
+  border-radius: 4px;
+  aspect-ratio: 4/5;
+  cursor: pointer;
+}
+
+.gallery-item:nth-child(1) { grid-row: span 2; aspect-ratio: auto; }
+
+.gallery-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.gallery-item:hover .gallery-img {
+  transform: scale(1.05);
+}
+
+.gallery-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(10,10,10,0.9) 0%, transparent 50%);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 2rem;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.gallery-item:hover .gallery-overlay {
+  opacity: 1;
+}
+
+.gallery-overlay h4 {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  color: var(--ivory);
+  margin-bottom: 0.8rem;
+}
+
+.gallery-overlay .btn {
+  font-size: 0.7rem;
+  padding: 0.6rem 1.5rem;
+  align-self: flex-start;
+}
+
+/* ═══════════════════════════════════════
+   TESTIMONIALS
+   ═══════════════════════════════════════ */
+.testimonials {
+  background: var(--black);
+}
+
+.testimonials-header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.testimonials-header .section-subtitle {
+  margin: 0 auto;
+}
+
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+.testimonial-card {
+  background: var(--black-card);
+  border: 1px solid rgba(201, 168, 76, 0.08);
+  border-radius: 4px;
+  padding: 2.5rem;
+  transition: all 0.4s ease;
+  position: relative;
+}
+
+.testimonial-card::before {
+  content: '"';
+  position: absolute;
+  top: 1rem;
+  right: 1.5rem;
+  font-family: var(--font-display);
+  font-size: 5rem;
+  color: var(--gold);
+  opacity: 0.08;
+  line-height: 1;
+}
+
+.testimonial-card:hover {
+  border-color: rgba(201, 168, 76, 0.2);
+  transform: translateY(-4px);
+}
+
+.testimonial-stars {
+  color: var(--gold);
+  font-size: 0.9rem;
+  margin-bottom: 1.5rem;
+  letter-spacing: 0.1em;
+}
+
+.testimonial-text {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-style: italic;
+  color: var(--champagne);
+  line-height: 1.8;
+  margin-bottom: 1.5rem;
+}
+
+.testimonial-author {
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+/* ═══════════════════════════════════════
+   AFTERCARE
+   ═══════════════════════════════════════ */
+.aftercare {
+  background: var(--black-soft);
+  position: relative;
+}
+
+.aftercare::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold-muted), transparent);
+}
+
+.aftercare-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5rem;
+  align-items: start;
+}
+
+.aftercare-intro {
+  position: sticky;
+  top: 8rem;
+}
+
+.accordion {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.accordion-item {
+  border: 1px solid rgba(201, 168, 76, 0.1);
+  border-radius: 4px;
+  overflow: hidden;
+  transition: border-color 0.3s;
+}
+
+.accordion-item:hover,
+.accordion-item.open {
+  border-color: rgba(201, 168, 76, 0.25);
+}
+
+.accordion-header {
+  width: 100%;
+  background: var(--black-card);
+  border: none;
+  color: var(--ivory);
+  font-family: var(--font-body);
+  font-weight: 300;
+  font-size: 0.95rem;
+  padding: 1.3rem 1.5rem;
+  text-align: left;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.3s;
+}
+
+.accordion-header:hover {
+  color: var(--gold);
+}
+
+.accordion-icon {
+  color: var(--gold);
+  font-size: 1.2rem;
+  transition: transform 0.3s ease;
+}
+
+.accordion-item.open .accordion-icon {
+  transform: rotate(45deg);
+}
+
+.accordion-body {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease, padding 0.4s ease;
+  background: rgba(22, 22, 22, 0.5);
+}
+
+.accordion-item.open .accordion-body {
+  max-height: 200px;
+}
+
+.accordion-body-inner {
+  padding: 0 1.5rem 1.3rem;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  line-height: 1.7;
+}
+
+/* ═══════════════════════════════════════
+   BOOKING CTA
+   ═══════════════════════════════════════ */
+.booking-cta {
+  background: var(--black);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.booking-cta::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 70% 50% at 50% 50%, rgba(201, 168, 76, 0.06) 0%, transparent 70%);
+}
+
+.booking-cta .container {
+  position: relative;
+  z-index: 1;
+}
+
+.booking-title {
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  margin-bottom: 1.5rem;
+  background: linear-gradient(135deg, var(--gold), var(--champagne), var(--gold));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.booking-sub {
+  font-weight: 200;
+  font-size: 1.1rem;
+  color: var(--text-muted);
+  margin-bottom: 3rem;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.7;
+}
+
+.booking-contact {
+  margin-top: 3rem;
+  display: flex;
+  justify-content: center;
+  gap: 3rem;
+  flex-wrap: wrap;
+}
+
+.booking-contact a {
+  color: var(--gold);
+  text-decoration: none;
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
+  transition: color 0.3s;
+}
+
+.booking-contact a:hover {
+  color: var(--gold-light);
+}
+
+/* ═══════════════════════════════════════
+   FOOTER
+   ═══════════════════════════════════════ */
+.footer {
+  background: var(--black-soft);
+  padding: 4rem 2rem 2rem;
+  border-top: 1px solid rgba(201, 168, 76, 0.08);
+}
+
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 3rem;
+  align-items: start;
+}
+
+.footer-brand .nav-logo {
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.footer-brand p {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+  max-width: 280px;
+}
+
+.footer-links {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+}
+
+.footer-links a {
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.footer-links a:hover { color: var(--gold); }
+
+.footer-social {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: flex-end;
+}
+
+.footer-social a {
+  color: var(--gold-muted);
+  text-decoration: none;
+  font-size: 1.2rem;
+  transition: color 0.3s, transform 0.3s;
+}
+
+.footer-social a:hover {
+  color: var(--gold);
+  transform: translateY(-2px);
+}
+
+.footer-bottom {
+  max-width: 1200px;
+  margin: 3rem auto 0;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(201, 168, 76, 0.06);
+  text-align: center;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  letter-spacing: 0.1em;
+}
+
+/* ═══════════════════════════════════════
+   RESPONSIVE
+   ═══════════════════════════════════════ */
+@media (max-width: 1024px) {
+  .services-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .journey-steps {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 3rem;
+  }
+  .journey-steps::before { display: none; }
+}
+
+@media (max-width: 768px) {
+  .nav { padding: 1rem 1.5rem; }
+  .nav-links { display: none; }
+  .hamburger { display: flex; }
+
+  .section-pad { padding: 5rem 1.5rem; }
+
+  .about-content {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+
+  .services-grid {
+    grid-template-columns: 1fr;
+    max-width: 450px;
+    margin: 0 auto;
+  }
+
+  .testimonials-grid {
+    grid-template-columns: 1fr;
+    max-width: 450px;
+    margin: 0 auto;
+  }
+
+  .gallery-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .gallery-item:nth-child(1) { grid-row: span 1; aspect-ratio: 4/5; }
+
+  .aftercare-layout {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+
+  .aftercare-intro { position: static; }
+
+  .journey-steps {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .footer-content {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: 2rem;
+  }
+
+  .footer-brand p { margin: 0 auto; }
+  .footer-links { justify-content: center; flex-wrap: wrap; }
+  .footer-social { justify-content: center; }
+
+  .pricing-tabs { flex-direction: column; }
+}
+
+@media (max-width: 480px) {
+  .hero-title { font-size: 2.5rem; }
+  .hero-buttons { flex-direction: column; align-items: center; }
+  .gallery-grid { grid-template-columns: 1fr; }
+  .about-stats { grid-template-columns: 1fr; }
+  .journey-steps { grid-template-columns: 1fr; }
+  .booking-contact { flex-direction: column; align-items: center; }
+}
+</style>
+</head>
+<body>
+
+<!-- Noise Overlay -->
+<div class="noise-overlay"></div>
+
+<!-- ═══════════════ NAVIGATION ═══════════════ -->
+<nav class="nav" id="nav">
+  <a href="#" class="nav-logo">✦ LASHÉ</a>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#book" class="nav-cta">Book Now</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+</nav>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#services" onclick="closeMenu()">Services</a>
+  <a href="#gallery" onclick="closeMenu()">Gallery</a>
+  <a href="#pricing" onclick="closeMenu()">Pricing</a>
+  <a href="#about" onclick="closeMenu()">About</a>
+  <a href="#book" onclick="closeMenu()" class="btn btn-gold" style="margin-top:1rem;">Book Now</a>
+</div>
+
+<!-- ═══════════════ HERO ═══════════════ -->
+<section class="hero" id="hero">
+  <div class="hero-bg"></div>
+  <canvas id="particles-canvas"></canvas>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Premium Eyelash Extensions</p>
+    <h1 class="hero-title">Lashes That <em>Speak</em><br>Before You Do.</h1>
+    <p class="hero-sub">Premium eyelash extension services — crafted for the woman who demands perfection.</p>
+    <div class="hero-buttons">
+      <a href="#book" class="btn btn-gold">Book Appointment</a>
+      <a href="#services" class="btn btn-outline">Explore Services</a>
+    </div>
+  </div>
+  <div class="hero-scroll-indicator">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- ═══════════════ ABOUT ═══════════════ -->
+<section class="about section-pad" id="about">
+  <div class="container">
+    <div class="about-content">
+      <div class="about-text reveal">
+        <p class="section-eyebrow">Our Philosophy</p>
+        <div class="gold-line"></div>
+        <p>At Lashé, every set is a work of art. Our certified lash artists combine precision technique with premium materials to give you lashes that last — and look breathtaking.</p>
+      </div>
+      <div class="about-stats">
+        <div class="stat-item reveal reveal-delay-1">
+          <span class="stat-number">500+</span>
+          <span class="stat-label">Happy Clients</span>
+        </div>
+        <div class="stat-item reveal reveal-delay-2">
+          <span class="stat-number">5★</span>
+          <span class="stat-label">Rated</span>
+        </div>
+        <div class="stat-item reveal reveal-delay-3">
+          <span class="stat-number">✦</span>
+          <span class="stat-label">Certified Artists</span>
+        </div>
+        <div class="stat-item reveal reveal-delay-4">
+          <span class="stat-number">100%</span>
+          <span class="stat-label">Premium Materials</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ SERVICES ═══════════════ -->
+<section class="services section-pad" id="services">
+  <div class="container">
+    <div class="services-header reveal">
+      <p class="section-eyebrow">What We Offer</p>
+      <h2 class="section-title">Our Signature Styles</h2>
+      <p class="section-subtitle">Six distinct looks, one standard — perfection.</p>
+    </div>
+    <div class="services-grid">
+      <!-- Classic -->
+      <div class="service-card reveal reveal-delay-1">
+        <div class="service-image">
+          <img src="images/service-classic.png" alt="Classic Lashes" class="service-img service-img-open">
+          <img src="images/service-classic-blink.png" alt="Classic Lashes Blink" class="service-img service-img-blink">
+        </div>
+        <div class="service-body">
+          <h3 class="service-name">Classic Lashes</h3>
+          <p class="service-desc">One extension per natural lash. Natural, defined, effortless. Perfect for first-timers seeking subtle enhancement.</p>
+          <div class="service-pricing">
+            <div class="service-price">$150 <small>Full Set</small></div>
+            <a href="#pricing" class="service-link">View Pricing</a>
+          </div>
+        </div>
+      </div>
+      <!-- Hybrid -->
+      <div class="service-card reveal reveal-delay-2">
+        <div class="service-image">
+          <img src="images/service-hybrid.png" alt="Hybrid Lashes" class="service-img service-img-open">
+          <img src="images/service-hybrid-blink.png" alt="Hybrid Lashes Blink" class="service-img service-img-blink">
+        </div>
+        <div class="service-body">
+          <h3 class="service-name">Hybrid Lashes</h3>
+          <p class="service-desc">A flawless blend of Classic and Volume. The best of both worlds — definition meets drama.</p>
+          <div class="service-pricing">
+            <div class="service-price">$180 <small>Full Set</small></div>
+            <a href="#pricing" class="service-link">View Pricing</a>
+          </div>
+        </div>
+      </div>
+      <!-- Volume -->
+      <div class="service-card reveal reveal-delay-3">
+        <div class="service-image">
+          <img src="images/service-volume.png" alt="Volume Lashes" class="service-img service-img-open">
+          <img src="images/service-volume-blink.png" alt="Volume Lashes Blink" class="service-img service-img-blink">
+        </div>
+        <div class="service-body">
+          <h3 class="service-name">Volume Lashes</h3>
+          <p class="service-desc">2–6 ultra-fine extensions per lash. Full, fluffy, and breathtaking. For those who want more.</p>
+          <div class="service-pricing">
+            <div class="service-price">$220 <small>Full Set</small></div>
+            <a href="#pricing" class="service-link">View Pricing</a>
+          </div>
+        </div>
+      </div>
+      <!-- Mega Volume -->
+      <div class="service-card reveal reveal-delay-1">
+        <div class="service-image">
+          <img src="images/service-mega.png" alt="Mega Volume Lashes" class="service-img service-img-open">
+          <img src="images/service-mega-blink.png" alt="Mega Volume Lashes Blink" class="service-img service-img-blink">
+        </div>
+        <div class="service-body">
+          <h3 class="service-name">Mega Volume Lashes</h3>
+          <p class="service-desc">6–15 nano-fine extensions per lash. Maximum density. Unmatched glamour. Our most dramatic look.</p>
+          <div class="service-pricing">
+            <div class="service-price">$280 <small>Full Set</small></div>
+            <a href="#pricing" class="service-link">View Pricing</a>
+          </div>
+        </div>
+      </div>
+      <!-- Wispy -->
+      <div class="service-card reveal reveal-delay-2">
+        <div class="service-image">
+          <img src="images/service-wispy.png" alt="Wispy Cat Eye Lashes" class="service-img service-img-open">
+          <img src="images/service-wispy-blink.png" alt="Wispy Cat Eye Lashes Blink" class="service-img service-img-blink">
+        </div>
+        <div class="service-body">
+          <h3 class="service-name">Wispy / Cat Eye</h3>
+          <p class="service-desc">Textured, spiked fans for a fluttery editorial finish. Trending and ultra-feminine.</p>
+          <div class="service-pricing">
+            <div class="service-price">$200 <small>Full Set</small></div>
+            <a href="#pricing" class="service-link">View Pricing</a>
+          </div>
+        </div>
+      </div>
+      <!-- Wet Look -->
+      <div class="service-card reveal reveal-delay-3">
+        <div class="service-image">
+          <img src="images/service-wet.png" alt="Wet Look Lashes" class="service-img service-img-open">
+          <img src="images/service-wet-blink.png" alt="Wet Look Lashes Blink" class="service-img service-img-blink">
+        </div>
+        <div class="service-body">
+          <h3 class="service-name">Wet Look Lashes</h3>
+          <p class="service-desc">Spiky, closed fan extensions for a fresh, dewy, just-showered aesthetic.</p>
+          <div class="service-pricing">
+            <div class="service-price">$190 <small>Full Set</small></div>
+            <a href="#pricing" class="service-link">View Pricing</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ PRICING ═══════════════ -->
+<section class="pricing section-pad" id="pricing">
+  <div class="container">
+    <div class="pricing-header reveal">
+      <p class="section-eyebrow">Investment</p>
+      <h2 class="section-title">Full Menu</h2>
+      <p class="section-subtitle">Transparent pricing for every style and service.</p>
+    </div>
+
+    <div class="pricing-tabs reveal">
+      <button class="pricing-tab active" data-tab="fullsets">Full Sets</button>
+      <button class="pricing-tab" data-tab="refills">Refills</button>
+      <button class="pricing-tab" data-tab="addons">Add-Ons</button>
+    </div>
+
+    <div class="pricing-panel active" id="panel-fullsets">
+      <div class="pricing-table reveal">
+        <div class="pricing-row"><span class="name">Classic Full Set</span><span class="price">$150</span></div>
+        <div class="pricing-row"><span class="name">Hybrid Full Set</span><span class="price">$180</span></div>
+        <div class="pricing-row"><span class="name">Volume Full Set</span><span class="price">$220</span></div>
+        <div class="pricing-row"><span class="name">Mega Volume Full Set</span><span class="price">$280</span></div>
+        <div class="pricing-row"><span class="name">Wispy / Cat Eye Full Set</span><span class="price">$200</span></div>
+        <div class="pricing-row"><span class="name">Wet Look Full Set</span><span class="price">$190</span></div>
+      </div>
+    </div>
+
+    <div class="pricing-panel" id="panel-refills">
+      <div class="pricing-table reveal">
+        <div class="pricing-row"><span class="name">Classic Refill</span><span class="price">$65</span></div>
+        <div class="pricing-row"><span class="name">Hybrid Refill</span><span class="price">$80</span></div>
+        <div class="pricing-row"><span class="name">Volume Refill</span><span class="price">$95</span></div>
+        <div class="pricing-row"><span class="name">Mega Volume Refill</span><span class="price">$115</span></div>
+        <div class="pricing-row"><span class="name">Wispy Refill</span><span class="price">$90</span></div>
+      </div>
+    </div>
+
+    <div class="pricing-panel" id="panel-addons">
+      <div class="pricing-table reveal">
+        <div class="pricing-row"><span class="name">Lash Lift & Tint</span><span class="price">$95</span></div>
+        <div class="pricing-row"><span class="name">Brow Lamination</span><span class="price">$85</span></div>
+        <div class="pricing-row"><span class="name">Lash Removal</span><span class="price">$30</span></div>
+        <div class="pricing-row"><span class="name">Patch Test</span><span class="price">Free</span></div>
+      </div>
+    </div>
+
+    <p class="pricing-note reveal">Appointments last 90 mins – 3 hours depending on style. Refills recommended every 2–3 weeks.</p>
+  </div>
+</section>
+
+<!-- ═══════════════ HOW IT WORKS ═══════════════ -->
+<section class="journey section-pad" id="journey">
+  <div class="container">
+    <div class="journey-header reveal">
+      <p class="section-eyebrow">The Process</p>
+      <h2 class="section-title">Your Lash Journey</h2>
+      <p class="section-subtitle">Four simple steps to your most beautiful lashes.</p>
+    </div>
+    <div class="journey-steps">
+      <div class="step reveal reveal-delay-1">
+        <div class="step-number">01</div>
+        <h3 class="step-title">Book</h3>
+        <p class="step-desc">Choose your style & book online in seconds</p>
+      </div>
+      <div class="step reveal reveal-delay-2">
+        <div class="step-number">02</div>
+        <h3 class="step-title">Consult</h3>
+        <p class="step-desc">Your artist designs the perfect look for your eye shape</p>
+      </div>
+      <div class="step reveal reveal-delay-3">
+        <div class="step-number">03</div>
+        <h3 class="step-title">Relax</h3>
+        <p class="step-desc">Lay back while we work our magic (90 min – 3 hrs)</p>
+      </div>
+      <div class="step reveal reveal-delay-4">
+        <div class="step-number">04</div>
+        <h3 class="step-title">Reveal</h3>
+        <p class="step-desc">Wake up flawless, every single day</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ GALLERY ═══════════════ -->
+<section class="gallery section-pad" id="gallery">
+  <div class="container">
+    <div class="gallery-header reveal">
+      <p class="section-eyebrow">Our Work</p>
+      <h2 class="section-title">Transformations</h2>
+      <p class="section-subtitle">Real results from real clients.</p>
+    </div>
+    <div class="gallery-grid">
+      <div class="gallery-item reveal reveal-delay-1">
+        <img src="images/gallery-volume.png" alt="Volume Set" class="gallery-img">
+        <div class="gallery-overlay">
+          <h4>Volume Set</h4>
+          <a href="#book" class="btn btn-outline">Book This Look</a>
+        </div>
+      </div>
+      <div class="gallery-item reveal reveal-delay-2">
+        <img src="images/gallery-wispy.png" alt="Wispy Cat Eye" class="gallery-img">
+        <div class="gallery-overlay">
+          <h4>Wispy Cat Eye</h4>
+          <a href="#book" class="btn btn-outline">Book This Look</a>
+        </div>
+      </div>
+      <div class="gallery-item reveal reveal-delay-3">
+        <img src="images/gallery-classic.png" alt="Classic Natural" class="gallery-img">
+        <div class="gallery-overlay">
+          <h4>Classic Natural</h4>
+          <a href="#book" class="btn btn-outline">Book This Look</a>
+        </div>
+      </div>
+      <div class="gallery-item reveal reveal-delay-4">
+        <img src="images/gallery-mega.png" alt="Mega Volume" class="gallery-img">
+        <div class="gallery-overlay">
+          <h4>Mega Volume</h4>
+          <a href="#book" class="btn btn-outline">Book This Look</a>
+        </div>
+      </div>
+      <div class="gallery-item reveal reveal-delay-5">
+        <img src="images/gallery-hybrid.png" alt="Hybrid Set" class="gallery-img">
+        <div class="gallery-overlay">
+          <h4>Hybrid Set</h4>
+          <a href="#book" class="btn btn-outline">Book This Look</a>
+        </div>
+      </div>
+      <div class="gallery-item reveal reveal-delay-6">
+        <img src="images/gallery-wet.png" alt="Wet Look" class="gallery-img">
+        <div class="gallery-overlay">
+          <h4>Wet Look</h4>
+          <a href="#book" class="btn btn-outline">Book This Look</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ TESTIMONIALS ═══════════════ -->
+<section class="testimonials section-pad" id="testimonials">
+  <div class="container">
+    <div class="testimonials-header reveal">
+      <p class="section-eyebrow">Client Love</p>
+      <h2 class="section-title">What They Say</h2>
+      <p class="section-subtitle">Don't take our word for it.</p>
+    </div>
+    <div class="testimonials-grid">
+      <div class="testimonial-card reveal reveal-delay-1">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-text">My lashes have never looked this good. The volume set is absolutely stunning — I get compliments everywhere I go.</p>
+        <p class="testimonial-author">— Sarah M.</p>
+      </div>
+      <div class="testimonial-card reveal reveal-delay-2">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-text">Professional, relaxing, and the results are incredible. I won't go anywhere else.</p>
+        <p class="testimonial-author">— Jessica T.</p>
+      </div>
+      <div class="testimonial-card reveal reveal-delay-3">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-text">I was nervous about extensions for the first time, but the team made me feel completely at ease. Obsessed with my lashes!</p>
+        <p class="testimonial-author">— Amelia R.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ AFTERCARE ═══════════════ -->
+<section class="aftercare section-pad" id="aftercare">
+  <div class="container">
+    <div class="aftercare-layout">
+      <div class="aftercare-intro reveal">
+        <p class="section-eyebrow">Post-Appointment</p>
+        <h2 class="section-title">Aftercare Tips</h2>
+        <div class="gold-line"></div>
+        <p class="section-subtitle">Keep your lashes looking flawless between appointments with these essential tips.</p>
+      </div>
+      <div class="accordion reveal reveal-delay-2">
+        <div class="accordion-item open">
+          <button class="accordion-header">
+            Keep lashes dry for 24–48 hours
+            <span class="accordion-icon">+</span>
+          </button>
+          <div class="accordion-body">
+            <div class="accordion-body-inner">Avoid water, steam, and excessive moisture for the first 24–48 hours after application. This allows the adhesive to fully cure and ensures maximum retention.</div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-header">
+            Avoid oil-based products
+            <span class="accordion-icon">+</span>
+          </button>
+          <div class="accordion-body">
+            <div class="accordion-body-inner">Oil-based cleansers, makeup removers, and moisturisers can break down the lash adhesive. Use oil-free products around the eye area to maintain your extensions.</div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-header">
+            Don't rub or pull at extensions
+            <span class="accordion-icon">+</span>
+          </button>
+          <div class="accordion-body">
+            <div class="accordion-body-inner">Resist the urge to touch, rub, or pull at your lashes. This can cause premature shedding and may damage your natural lashes over time.</div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-header">
+            Brush daily with a spoolie
+            <span class="accordion-icon">+</span>
+          </button>
+          <div class="accordion-body">
+            <div class="accordion-body-inner">Gently brush through your lashes each morning with a clean spoolie brush to keep them separated, fluffy, and looking their best throughout the day.</div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-header">
+            Book refills every 2–3 weeks
+            <span class="accordion-icon">+</span>
+          </button>
+          <div class="accordion-body">
+            <div class="accordion-body-inner">Your natural lashes shed on a cycle, taking extensions with them. Regular refill appointments keep your set looking full and fresh at all times.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ BOOKING CTA ═══════════════ -->
+<section class="booking-cta section-pad" id="book">
+  <div class="container reveal">
+    <h2 class="booking-title">Ready to Wake Up Flawless?</h2>
+    <p class="booking-sub">Book your appointment today — limited slots available.</p>
+    <a href="#" class="btn btn-gold" style="font-size:0.9rem; padding: 1.2rem 3.5rem;">Book Now</a>
+    <div class="booking-contact">
+      <a href="tel:+1234567890">✆ (123) 456-7890</a>
+      <a href="#">✦ @lashé.studio</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ FOOTER ═══════════════ -->
+<footer class="footer">
+  <div class="footer-content">
+    <div class="footer-brand">
+      <a href="#" class="nav-logo">✦ LASHÉ</a>
+      <p>Premium eyelash extensions crafted for the woman who demands perfection.</p>
+    </div>
+    <ul class="footer-links">
+      <li><a href="#services">Services</a></li>
+      <li><a href="#pricing">Pricing</a></li>
+      <li><a href="#gallery">Gallery</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#book">Book</a></li>
+    </ul>
+    <div class="footer-social">
+      <a href="#" aria-label="Instagram">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+      </a>
+      <a href="#" aria-label="Facebook">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+      </a>
+      <a href="#" aria-label="TikTok">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/></svg>
+      </a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    &copy; 2025 Lashé. All rights reserved.
+  </div>
+</footer>
+
+<!-- ═══════════════ JAVASCRIPT ═══════════════ -->
+<script>
+// ─── NAV SCROLL ───
+const nav = document.getElementById('nav');
+let lastScroll = 0;
+
+window.addEventListener('scroll', () => {
+  const scrollY = window.scrollY;
+  nav.classList.toggle('scrolled', scrollY > 80);
+  lastScroll = scrollY;
+});
+
+// ─── HAMBURGER MENU ───
+const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobileMenu');
+
+hamburger.addEventListener('click', () => {
+  hamburger.classList.toggle('active');
+  mobileMenu.classList.toggle('open');
+  document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
+});
+
+function closeMenu() {
+  hamburger.classList.remove('active');
+  mobileMenu.classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+// ─── SCROLL REVEAL ───
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+// ─── PRICING TABS ───
+document.querySelectorAll('.pricing-tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.pricing-tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.pricing-panel').forEach(p => p.classList.remove('active'));
+    tab.classList.add('active');
+    document.getElementById('panel-' + tab.dataset.tab).classList.add('active');
+  });
+});
+
+// ─── ACCORDION ───
+document.querySelectorAll('.accordion-header').forEach(header => {
+  header.addEventListener('click', () => {
+    const item = header.parentElement;
+    const isOpen = item.classList.contains('open');
+
+    // Close all
+    document.querySelectorAll('.accordion-item').forEach(i => i.classList.remove('open'));
+
+    // Toggle current
+    if (!isOpen) item.classList.add('open');
+  });
+});
+
+// ─── GOLD PARTICLE EFFECT ───
+(function() {
+  const canvas = document.getElementById('particles-canvas');
+  const ctx = canvas.getContext('2d');
+  let particles = [];
+  let animFrame;
+
+  function resize() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+
+  class Particle {
+    constructor() {
+      this.reset();
+    }
+
+    reset() {
+      this.x = Math.random() * canvas.width;
+      this.y = Math.random() * canvas.height;
+      this.size = Math.random() * 2 + 0.5;
+      this.speedX = (Math.random() - 0.5) * 0.3;
+      this.speedY = (Math.random() - 0.5) * 0.3;
+      this.opacity = Math.random() * 0.4 + 0.05;
+      this.fadeSpeed = Math.random() * 0.005 + 0.002;
+      this.growing = Math.random() > 0.5;
+    }
+
+    update() {
+      this.x += this.speedX;
+      this.y += this.speedY;
+
+      if (this.growing) {
+        this.opacity += this.fadeSpeed;
+        if (this.opacity >= 0.5) this.growing = false;
+      } else {
+        this.opacity -= this.fadeSpeed;
+        if (this.opacity <= 0.02) {
+          this.reset();
+          this.growing = true;
+        }
+      }
+
+      if (this.x < 0 || this.x > canvas.width || this.y < 0 || this.y > canvas.height) {
+        this.reset();
+      }
+    }
+
+    draw() {
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(201, 168, 76, ${this.opacity})`;
+      ctx.fill();
+    }
+  }
+
+  function init() {
+    resize();
+    const count = Math.min(80, Math.floor(canvas.width * canvas.height / 15000));
+    particles = [];
+    for (let i = 0; i < count; i++) {
+      particles.push(new Particle());
+    }
+  }
+
+  function animate() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    particles.forEach(p => { p.update(); p.draw(); });
+    animFrame = requestAnimationFrame(animate);
+  }
+
+  // Only run particles when hero is visible
+  const heroObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        if (!animFrame) animate();
+      } else {
+        if (animFrame) { cancelAnimationFrame(animFrame); animFrame = null; }
+      }
+    });
+  }, { threshold: 0 });
+
+  window.addEventListener('resize', () => { resize(); });
+  init();
+  heroObserver.observe(document.getElementById('hero'));
+})();
+</script>
+</body>
+</html>
