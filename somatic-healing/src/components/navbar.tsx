@@ -1,8 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
-import { Menu, X } from "lucide-react";
+import { useState, useEffect } from "react";
+import { Menu, X, User } from "lucide-react";
+import { createClient } from "@/lib/supabase-browser";
 
 const links = [
   { href: "/", label: "Home" },
@@ -15,6 +16,14 @@ const links = [
 
 export function Navbar() {
   const [open, setOpen] = useState(false);
+  const [user, setUser] = useState<{ id: string } | null>(null);
+
+  useEffect(() => {
+    const supabase = createClient();
+    supabase.auth.getUser().then(({ data }) => {
+      setUser(data.user);
+    });
+  }, []);
 
   return (
     <nav className="sticky top-0 z-50 bg-warm-white/95 backdrop-blur-sm border-b border-[var(--border)]">
@@ -44,12 +53,21 @@ export function Navbar() {
                 {link.label}
               </Link>
             ))}
-            <Link
-              href="/for-practitioners"
-              className="text-sm font-medium bg-primary text-white px-5 py-2.5 rounded-lg hover:bg-primary-dark transition-colors"
-            >
-              List Your Practice
-            </Link>
+            {user ? (
+              <Link
+                href="/dashboard"
+                className="text-sm font-medium bg-primary text-white px-5 py-2.5 rounded-lg hover:bg-primary-dark transition-colors inline-flex items-center gap-2"
+              >
+                <User size={14} /> Dashboard
+              </Link>
+            ) : (
+              <Link
+                href="/auth/sign-up"
+                className="text-sm font-medium bg-primary text-white px-5 py-2.5 rounded-lg hover:bg-primary-dark transition-colors"
+              >
+                List Your Practice
+              </Link>
+            )}
           </div>
 
           <button
@@ -75,13 +93,23 @@ export function Navbar() {
                 {link.label}
               </Link>
             ))}
-            <Link
-              href="/for-practitioners"
-              onClick={() => setOpen(false)}
-              className="block text-center font-medium bg-primary text-white px-5 py-2.5 rounded-lg hover:bg-primary-dark transition-colors"
-            >
-              List Your Practice
-            </Link>
+            {user ? (
+              <Link
+                href="/dashboard"
+                onClick={() => setOpen(false)}
+                className="block text-center font-medium bg-primary text-white px-5 py-2.5 rounded-lg hover:bg-primary-dark transition-colors"
+              >
+                Dashboard
+              </Link>
+            ) : (
+              <Link
+                href="/auth/sign-up"
+                onClick={() => setOpen(false)}
+                className="block text-center font-medium bg-primary text-white px-5 py-2.5 rounded-lg hover:bg-primary-dark transition-colors"
+              >
+                List Your Practice
+              </Link>
+            )}
           </div>
         </div>
       )}
