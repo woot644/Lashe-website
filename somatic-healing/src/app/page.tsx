@@ -22,7 +22,7 @@ export default function Home() {
           <div className="max-w-3xl mx-auto text-center">
             <p className="gold-text font-semibold text-sm tracking-[0.2em] uppercase mb-4">Australia&apos;s Somatic Therapy Directory</p>
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-[var(--text-light)] leading-[1.1] mb-6" style={{ fontFamily: "var(--font-heading)" }}>
-              Find a therapist who works with your body, <em className="gold-text not-italic">not just your mind</em>
+              Find a therapist who works with your body, <em className="text-[#FFF8F2] not-italic" style={{ textShadow: "0 2px 8px rgba(138,74,58,0.4)" }}>not just your mind</em>
             </h1>
             <p className="text-lg sm:text-xl text-white/80 mb-10 max-w-2xl mx-auto leading-relaxed">
               Somatic therapy helps your body release what words alone cannot reach. Find a qualified, verified practitioner near you.
