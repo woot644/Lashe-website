@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { DM_Sans, Lora } from "next/font/google";
+import { DM_Sans, Cormorant_Garamond } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
@@ -10,7 +10,7 @@ const body = DM_Sans({
   weight: ["400", "500", "600", "700"],
 });
 
-const heading = Lora({
+const heading = Cormorant_Garamond({
   variable: "--font-heading",
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],

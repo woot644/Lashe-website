@@ -30,7 +30,7 @@ export function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 sm:h-20">
           <Link href="/" className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-full bg-primary flex items-center justify-center">
+            <div className="w-8 h-8 rounded-full gold-gradient flex items-center justify-center">
               <svg viewBox="0 0 24 24" className="w-4 h-4 text-white" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
                 <path d="M12 22c4-4 8-7 8-12a8 8 0 0 0-16 0c0 5 4 8 8 12z" />
               </svg>
@@ -48,7 +48,7 @@ export function Navbar() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="text-sm text-[var(--text-secondary)] hover:text-primary-dark transition-colors"
+                className="text-sm text-[var(--text-secondary)] hover:text-primary transition-colors"
               >
                 {link.label}
               </Link>
@@ -56,14 +56,14 @@ export function Navbar() {
             {user ? (
               <Link
                 href="/dashboard"
-                className="text-sm font-medium bg-primary text-white px-5 py-2.5 rounded-lg hover:bg-primary-dark transition-colors inline-flex items-center gap-2"
+                className="text-sm font-semibold gold-btn px-5 py-2.5 rounded-xl transition-all inline-flex items-center gap-2"
               >
                 <User size={14} /> Dashboard
               </Link>
             ) : (
               <Link
                 href="/auth/sign-up"
-                className="text-sm font-medium bg-primary text-white px-5 py-2.5 rounded-lg hover:bg-primary-dark transition-colors"
+                className="text-sm font-semibold gold-btn px-5 py-2.5 rounded-xl transition-all"
               >
                 List Your Practice
               </Link>
@@ -88,7 +88,7 @@ export function Navbar() {
                 key={link.href}
                 href={link.href}
                 onClick={() => setOpen(false)}
-                className="block text-[var(--text-secondary)] hover:text-primary-dark py-2"
+                className="block text-[var(--text-secondary)] hover:text-primary py-2"
               >
                 {link.label}
               </Link>
@@ -97,7 +97,7 @@ export function Navbar() {
               <Link
                 href="/dashboard"
                 onClick={() => setOpen(false)}
-                className="block text-center font-medium bg-primary text-white px-5 py-2.5 rounded-lg hover:bg-primary-dark transition-colors"
+                className="block text-center font-semibold gold-btn px-5 py-2.5 rounded-xl transition-all"
               >
                 Dashboard
               </Link>
@@ -105,7 +105,7 @@ export function Navbar() {
               <Link
                 href="/auth/sign-up"
                 onClick={() => setOpen(false)}
-                className="block text-center font-medium bg-primary text-white px-5 py-2.5 rounded-lg hover:bg-primary-dark transition-colors"
+                className="block text-center font-semibold gold-btn px-5 py-2.5 rounded-xl transition-all"
               >
                 List Your Practice
               </Link>

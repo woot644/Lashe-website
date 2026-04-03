@@ -125,7 +125,7 @@ export default function ForPractitioners() {
       {/* Hero */}
       <section className="bg-primary-50 py-16 sm:py-20">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <p className="text-primary-dark font-medium text-sm tracking-wide uppercase mb-3">For Practitioners</p>
+          <p className="text-primary font-medium text-sm tracking-wide uppercase mb-3">For Practitioners</p>
           <h1
             className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[var(--text-primary)] mb-6"
             style={{ fontFamily: "var(--font-heading)" }}
@@ -144,8 +144,8 @@ export default function ForPractitioners() {
           <div className="grid sm:grid-cols-2 gap-8 max-w-4xl mx-auto">
             {benefits.map((b) => (
               <div key={b.title} className="bg-white rounded-xl border border-[var(--border)] p-6">
-                <div className="w-10 h-10 rounded-xl bg-primary-50 flex items-center justify-center mb-4">
-                  <b.icon size={20} className="text-primary-dark" />
+                <div className="w-10 h-10 rounded-xl bg-aqua-50 flex items-center justify-center mb-4">
+                  <b.icon size={20} className="text-aqua" />
                 </div>
                 <h3 className="text-lg font-semibold text-[var(--text-primary)] mb-2" style={{ fontFamily: "var(--font-heading)" }}>
                   {b.title}
@@ -173,7 +173,7 @@ export default function ForPractitioners() {
                 key={tier.name}
                 className={`rounded-xl p-6 ${
                   tier.highlighted
-                    ? "bg-primary text-white border-2 border-primary ring-4 ring-primary/10"
+                    ? "gold-gradient text-white border-0 ring-4 ring-[#C9963A]/10"
                     : "bg-white border border-[var(--border)]"
                 }`}
               >
@@ -205,7 +205,7 @@ export default function ForPractitioners() {
                     <div key={f} className="flex items-start gap-2">
                       <CheckCircle
                         size={14}
-                        className={`shrink-0 mt-0.5 ${tier.highlighted ? "text-white/80" : "text-primary-dark"}`}
+                        className={`shrink-0 mt-0.5 ${tier.highlighted ? "text-white/80" : "text-aqua"}`}
                       />
                       <span className={`text-sm ${tier.highlighted ? "text-white/90" : "text-[var(--text-secondary)]"}`}>
                         {f}
@@ -223,8 +223,8 @@ export default function ForPractitioners() {
                 <button
                   className={`w-full py-3 rounded-lg font-medium text-sm transition-colors ${
                     tier.highlighted
-                      ? "bg-white text-primary-dark hover:bg-white/90"
-                      : "bg-primary text-white hover:bg-primary-dark"
+                      ? "bg-white text-[#A07828] hover:bg-white/90"
+                      : "gold-btn"
                   }`}
                 >
                   {tier.cta}
@@ -239,8 +239,8 @@ export default function ForPractitioners() {
       <section id="verification" className="py-16 sm:py-20 bg-warm-white">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <div className="w-14 h-14 rounded-2xl bg-primary-50 flex items-center justify-center mx-auto mb-5">
-              <Shield size={24} className="text-primary-dark" />
+            <div className="w-14 h-14 rounded-2xl bg-aqua-50 flex items-center justify-center mx-auto mb-5">
+              <Shield size={24} className="text-aqua" />
             </div>
             <h2 className="text-3xl font-bold text-[var(--text-primary)] mb-4" style={{ fontFamily: "var(--font-heading)" }}>
               Our Verification Process
@@ -269,7 +269,7 @@ export default function ForPractitioners() {
               },
             ].map((item) => (
               <div key={item.step} className="flex items-start gap-4 bg-cream rounded-xl p-5">
-                <div className="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center text-sm font-semibold shrink-0">
+                <div className="w-8 h-8 rounded-full gold-gradient text-white flex items-center justify-center text-sm font-semibold shrink-0">
                   {item.step}
                 </div>
                 <div>
@@ -310,7 +310,7 @@ export default function ForPractitioners() {
           </p>
           <Link
             href="/contact?type=practitioner"
-            className="inline-flex items-center gap-2 bg-primary hover:bg-primary-light text-white font-medium px-8 py-3 rounded-lg transition-colors"
+            className="inline-flex items-center gap-2 gold-btn font-medium px-8 py-3 rounded-lg"
           >
             Get Started <ArrowRight size={16} />
           </Link>

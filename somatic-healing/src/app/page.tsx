@@ -8,40 +8,40 @@ const featuredPractitioners = practitioners.filter((p) => p.listingTier === "fea
 export default function Home() {
   return (
     <>
-      {/* Hero */}
-      <section className="relative bg-primary-50 overflow-hidden">
+      {/* Hero — Sunset Tide Gradient */}
+      <section className="relative hero-gradient overflow-hidden">
         <Image
           src="/images/hero.png"
           alt="A person sitting peacefully in a warm, light-filled therapy room practising body awareness"
           fill
           priority
-          className="object-cover opacity-20"
+          className="object-cover opacity-15 mix-blend-overlay"
           sizes="100vw"
         />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-28 lg:py-36 relative">
           <div className="max-w-3xl mx-auto text-center">
-            <p className="text-primary-dark font-medium text-sm tracking-wide uppercase mb-4">Australia&apos;s Somatic Therapy Directory</p>
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-[var(--text-primary)] leading-[1.1] mb-6" style={{ fontFamily: "var(--font-heading)" }}>
-              Find a therapist who works with your body, <em className="text-primary-dark not-italic">not just your mind</em>
+            <p className="gold-text font-semibold text-sm tracking-[0.2em] uppercase mb-4">Australia&apos;s Somatic Therapy Directory</p>
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-[var(--text-light)] leading-[1.1] mb-6" style={{ fontFamily: "var(--font-heading)" }}>
+              Find a therapist who works with your body, <em className="gold-text not-italic">not just your mind</em>
             </h1>
-            <p className="text-lg sm:text-xl text-[var(--text-secondary)] mb-10 max-w-2xl mx-auto leading-relaxed">
+            <p className="text-lg sm:text-xl text-white/80 mb-10 max-w-2xl mx-auto leading-relaxed">
               Somatic therapy helps your body release what words alone cannot reach. Find a qualified, verified practitioner near you.
             </p>
 
             {/* Search Bar */}
-            <div className="bg-white rounded-xl shadow-lg border border-[var(--border)] p-3 sm:p-4 max-w-2xl mx-auto">
+            <div className="bg-white/95 backdrop-blur-sm rounded-2xl shadow-xl border border-white/20 p-3 sm:p-4 max-w-2xl mx-auto">
               <div className="flex flex-col sm:flex-row gap-3">
                 <div className="flex-1 relative">
                   <MapPin size={18} className="absolute left-3 top-1/2 -translate-y-1/2 text-[var(--text-muted)]" />
                   <input
                     type="text"
                     placeholder="City, suburb, or postcode"
-                    className="w-full pl-10 pr-4 py-3 rounded-lg bg-cream border border-[var(--border)] text-sm focus:outline-none focus:border-primary transition-colors"
+                    className="w-full pl-10 pr-4 py-3 rounded-xl bg-cream border border-[var(--border)] text-sm focus:outline-none focus:border-aqua transition-colors"
                   />
                 </div>
                 <div className="flex-1 relative">
                   <Search size={18} className="absolute left-3 top-1/2 -translate-y-1/2 text-[var(--text-muted)]" />
-                  <select className="w-full pl-10 pr-4 py-3 rounded-lg bg-cream border border-[var(--border)] text-sm focus:outline-none focus:border-primary transition-colors appearance-none text-[var(--text-secondary)]">
+                  <select className="w-full pl-10 pr-4 py-3 rounded-xl bg-cream border border-[var(--border)] text-sm focus:outline-none focus:border-aqua transition-colors appearance-none text-[var(--text-secondary)]">
                     <option value="">What are you experiencing?</option>
                     {experiences.map((exp) => (
                       <option key={exp} value={exp}>{exp}</option>
@@ -50,14 +50,14 @@ export default function Home() {
                 </div>
                 <Link
                   href="/find-a-therapist"
-                  className="bg-primary hover:bg-primary-dark text-white font-medium px-8 py-3 rounded-lg transition-colors text-sm whitespace-nowrap text-center"
+                  className="gold-btn font-semibold px-8 py-3 rounded-xl transition-all text-sm whitespace-nowrap text-center uppercase tracking-wider"
                 >
                   Search
                 </Link>
               </div>
             </div>
 
-            <p className="text-xs text-[var(--text-muted)] mt-4">
+            <p className="text-xs text-white/50 mt-4">
               Search is free. No account required. Browse verified practitioners across Australia.
             </p>
           </div>
@@ -68,7 +68,7 @@ export default function Home() {
       <section className="py-20 sm:py-24 bg-warm-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <p className="text-primary-dark font-medium text-sm tracking-wide uppercase mb-3">How It Works</p>
+            <p className="text-aqua font-semibold text-sm tracking-[0.15em] uppercase mb-3">How It Works</p>
             <h2 className="text-3xl sm:text-4xl font-bold text-[var(--text-primary)]" style={{ fontFamily: "var(--font-heading)" }}>
               Three steps to finding the right therapist
             </h2>
@@ -96,10 +96,10 @@ export default function Home() {
               },
             ].map((item) => (
               <div key={item.step} className="text-center">
-                <div className="w-14 h-14 rounded-2xl bg-primary-50 flex items-center justify-center mx-auto mb-5">
-                  <item.icon size={24} className="text-primary-dark" />
+                <div className="w-14 h-14 rounded-2xl bg-aqua-50 flex items-center justify-center mx-auto mb-5">
+                  <item.icon size={24} className="text-aqua" />
                 </div>
-                <div className="text-xs font-semibold text-primary-dark uppercase tracking-wider mb-2">Step {item.step}</div>
+                <div className="text-xs font-semibold gold-text uppercase tracking-wider mb-2">Step {item.step}</div>
                 <h3 className="text-lg font-semibold text-[var(--text-primary)] mb-2" style={{ fontFamily: "var(--font-heading)" }}>
                   {item.title}
                 </h3>
@@ -115,7 +115,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div>
-              <p className="text-primary-dark font-medium text-sm tracking-wide uppercase mb-3">Understanding Somatic Therapy</p>
+              <p className="text-primary font-semibold text-sm tracking-[0.15em] uppercase mb-3">Understanding Somatic Therapy</p>
               <h2 className="text-3xl sm:text-4xl font-bold text-[var(--text-primary)] mb-6" style={{ fontFamily: "var(--font-heading)" }}>
                 Your body remembers what your mind tries to forget
               </h2>
@@ -132,7 +132,7 @@ export default function Home() {
               </div>
               <Link
                 href="/about-somatic-healing"
-                className="inline-flex items-center gap-2 text-primary-dark font-medium mt-6 hover:gap-3 transition-all text-sm"
+                className="inline-flex items-center gap-2 text-aqua font-medium mt-6 hover:gap-3 transition-all text-sm"
               >
                 Learn more about somatic healing <ArrowRight size={16} />
               </Link>
@@ -152,7 +152,7 @@ export default function Home() {
               ].map((quote) => (
                 <div
                   key={quote}
-                  className="bg-white rounded-xl p-5 border border-[var(--border)] hover:border-primary-light transition-colors"
+                  className="bg-warm-white rounded-xl p-5 border border-[var(--border)] hover:border-primary-light transition-colors"
                 >
                   <p className="text-[var(--text-secondary)] text-sm italic leading-relaxed">{quote}</p>
                 </div>
@@ -166,7 +166,7 @@ export default function Home() {
       <section className="py-20 sm:py-24 bg-warm-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <p className="text-primary-dark font-medium text-sm tracking-wide uppercase mb-3">Featured Practitioners</p>
+            <p className="text-primary font-semibold text-sm tracking-[0.15em] uppercase mb-3">Featured Practitioners</p>
             <h2 className="text-3xl sm:text-4xl font-bold text-[var(--text-primary)]" style={{ fontFamily: "var(--font-heading)" }}>
               Qualified, verified, and ready to help
             </h2>
@@ -174,13 +174,13 @@ export default function Home() {
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {featuredPractitioners.map((p) => (
-              <Link key={p.slug} href={`/practitioners/${p.slug}`} className="bg-white rounded-xl border border-[var(--border)] shadow-sm overflow-hidden hover:shadow-lg transition-all duration-200 group cursor-pointer">
+              <Link key={p.slug} href={`/practitioners/${p.slug}`} className="bg-white rounded-2xl border border-[var(--border)] shadow-sm overflow-hidden hover:shadow-lg transition-all duration-200 group cursor-pointer">
                 <div className="aspect-[4/3] bg-primary-50 relative overflow-hidden">
                   {p.photo ? (
                     <Image src={p.photo} alt={p.fullName} fill className="object-cover group-hover:scale-105 transition-transform duration-300" sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw" />
                   ) : (
                     <div className="absolute inset-0 flex items-center justify-center">
-                      <div className="w-20 h-20 rounded-full bg-primary-100 flex items-center justify-center">
+                      <div className="w-20 h-20 rounded-full bg-sand flex items-center justify-center">
                         <span className="text-2xl font-semibold text-primary-dark" style={{ fontFamily: "var(--font-heading)" }}>
                           {p.fullName.split(" ").map(n => n[0]).join("")}
                         </span>
@@ -189,14 +189,14 @@ export default function Home() {
                   )}
                 </div>
                 <div className="p-5">
-                  <h3 className="font-semibold text-[var(--text-primary)] mb-1 group-hover:text-primary-dark transition-colors">{p.fullName}</h3>
-                  <p className="text-xs text-primary-dark mb-2">{p.credentials}</p>
+                  <h3 className="font-semibold text-[var(--text-primary)] mb-1 group-hover:text-primary transition-colors">{p.fullName}</h3>
+                  <p className="text-xs text-primary mb-2">{p.credentials}</p>
                   <div className="flex items-center gap-1 text-xs text-[var(--text-muted)] mb-3">
                     <MapPin size={12} />
                     {p.location.city}, {p.location.state}
                   </div>
                   <p className="text-xs text-[var(--text-secondary)] mb-4">{p.helpsWithTags.slice(0, 2).join(", ")}</p>
-                  <span className="block text-center text-sm font-medium text-primary-dark border border-primary rounded-lg py-2 group-hover:bg-primary group-hover:text-white transition-colors">
+                  <span className="block text-center text-sm font-medium text-aqua border border-aqua rounded-xl py-2 group-hover:bg-aqua group-hover:text-white transition-colors">
                     View Profile
                   </span>
                 </div>
@@ -207,7 +207,7 @@ export default function Home() {
           <div className="text-center mt-10">
             <Link
               href="/find-a-therapist"
-              className="inline-flex items-center gap-2 bg-primary hover:bg-primary-dark text-white font-medium px-8 py-3 rounded-lg transition-colors text-sm"
+              className="gold-btn inline-flex items-center gap-2 font-semibold px-8 py-3 rounded-xl transition-all text-sm uppercase tracking-wider"
             >
               Browse All Practitioners <ArrowRight size={16} />
             </Link>
@@ -216,7 +216,7 @@ export default function Home() {
       </section>
 
       {/* Trust Section */}
-      <section className="py-16 bg-primary-50 border-y border-[var(--border)]">
+      <section className="py-16 bg-aqua-50 border-y border-[var(--border)]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 text-center">
             {[
@@ -226,7 +226,7 @@ export default function Home() {
               { icon: CheckCircle, num: "Free", label: "Search and browse at no cost" },
             ].map((item) => (
               <div key={item.label}>
-                <item.icon size={24} className="text-primary-dark mx-auto mb-3" />
+                <item.icon size={24} className="text-aqua mx-auto mb-3" />
                 <div className="text-2xl font-bold text-[var(--text-primary)]" style={{ fontFamily: "var(--font-heading)" }}>{item.num}</div>
                 <p className="text-xs text-[var(--text-secondary)] mt-1">{item.label}</p>
               </div>
@@ -236,30 +236,30 @@ export default function Home() {
       </section>
 
       {/* Practitioner CTA */}
-      <section className="py-20 sm:py-24 bg-[#2c2c2c]">
+      <section className="py-20 sm:py-24 bg-[#2A1E1A]">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <p className="text-primary-light font-medium text-sm tracking-wide uppercase mb-3">For Practitioners</p>
-          <h2 className="text-3xl sm:text-4xl font-bold text-white mb-6" style={{ fontFamily: "var(--font-heading)" }}>
+          <p className="gold-text font-semibold text-sm tracking-[0.2em] uppercase mb-3">For Practitioners</p>
+          <h2 className="text-3xl sm:text-4xl font-bold text-[var(--text-light)] mb-6" style={{ fontFamily: "var(--font-heading)" }}>
             Are you a somatic therapist?
           </h2>
-          <p className="text-white/70 text-lg mb-8 leading-relaxed">
+          <p className="text-[var(--text-light)]/70 text-lg mb-8 leading-relaxed">
             Join Australia&apos;s first dedicated somatic therapy directory. Get found by people who are actively looking for what you offer &mdash; without managing your own SEO or marketing.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               href="/for-practitioners"
-              className="inline-flex items-center justify-center gap-2 bg-primary hover:bg-primary-light text-white font-medium px-8 py-3 rounded-lg transition-colors"
+              className="gold-btn inline-flex items-center justify-center gap-2 font-semibold px-8 py-3 rounded-xl transition-all uppercase tracking-wider"
             >
               List Your Practice <ArrowRight size={16} />
             </Link>
             <Link
               href="/for-practitioners#pricing"
-              className="inline-flex items-center justify-center gap-2 border border-white/20 text-white hover:bg-white/5 font-medium px-8 py-3 rounded-lg transition-colors"
+              className="inline-flex items-center justify-center gap-2 border border-[var(--gold)]/30 text-[var(--gold-bright)] hover:bg-white/5 font-medium px-8 py-3 rounded-xl transition-colors"
             >
               See Listing Plans
             </Link>
           </div>
-          <p className="text-white/40 text-xs mt-6">Free basic listing available. Premium plans from $29/month.</p>
+          <p className="text-white/30 text-xs mt-6">Free basic listing available. Premium plans from $29/month.</p>
         </div>
       </section>
     </>

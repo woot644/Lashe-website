@@ -227,7 +227,7 @@ export default function FindATherapist() {
               {(locationQuery || selectedExperience || activeFilterCount > 0) && (
                 <button
                   onClick={clearFilters}
-                  className="text-xs text-primary-dark hover:text-primary-dark flex items-center gap-1"
+                  className="text-xs text-aqua hover:text-aqua flex items-center gap-1"
                 >
                   <X size={12} /> Clear all
                 </button>
@@ -260,7 +260,7 @@ export default function FindATherapist() {
               </p>
               <button
                 onClick={clearFilters}
-                className="text-sm text-primary-dark hover:text-primary-dark font-medium"
+                className="text-sm text-aqua hover:text-aqua font-medium"
               >
                 Clear all filters
               </button>
@@ -276,7 +276,7 @@ function PractitionerCard({ practitioner: p }: { practitioner: Practitioner }) {
   return (
     <Link
       href={`/practitioners/${p.slug}`}
-      className="bg-white rounded-xl border border-[var(--border)] shadow-sm overflow-hidden hover:shadow-lg transition-all duration-200 group cursor-pointer"
+      className="bg-white rounded-2xl border border-[var(--border)] shadow-sm overflow-hidden hover:shadow-lg transition-all duration-200 group cursor-pointer"
     >
       <div className="aspect-[3/1] bg-primary-50 relative overflow-hidden">
         {p.photo ? (
@@ -291,7 +291,7 @@ function PractitionerCard({ practitioner: p }: { practitioner: Practitioner }) {
           </div>
         )}
         {p.listingTier === "featured" && (
-          <span className="absolute top-3 right-3 bg-primary text-white text-[10px] font-semibold px-2 py-0.5 rounded-full uppercase tracking-wide z-10">
+          <span className="absolute top-3 right-3 gold-gradient text-white text-[10px] font-semibold px-2 py-0.5 rounded-full uppercase tracking-wide z-10">
             Featured
           </span>
         )}
@@ -303,12 +303,12 @@ function PractitionerCard({ practitioner: p }: { practitioner: Practitioner }) {
             {p.fullName}
           </h3>
           {p.verified && (
-            <span className="text-[10px] bg-primary-50 text-primary-dark font-medium px-1.5 py-0.5 rounded">
+            <span className="text-[10px] bg-aqua-50 text-aqua font-medium px-1.5 py-0.5 rounded">
               Verified
             </span>
           )}
         </div>
-        <p className="text-xs text-primary-dark mb-2">{p.credentials}</p>
+        <p className="text-xs text-primary mb-2">{p.credentials}</p>
         <div className="flex items-center gap-1 text-xs text-[var(--text-muted)] mb-3">
           <MapPin size={12} />
           {p.location.suburb}, {p.location.city} {p.location.state}

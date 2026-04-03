@@ -1,23 +1,41 @@
 @import "tailwindcss";
 
 :root {
-  --primary: #a0725b;
-  --primary-light: #bc8e78;
-  --primary-dark: #865e49;
-  --primary-50: #faf5f2;
-  --primary-100: #f0e4de;
-  --terracotta: #c4836a;
-  --terracotta-light: #d4a08b;
-  --clay: #b8956a;
-  --sand: #e8ddd0;
-  --sand-light: #f5f0e8;
-  --stone: #8a7e72;
-  --cream: #faf8f5;
-  --warm-white: #fdfcfa;
-  --text-primary: #2c2c2c;
-  --text-secondary: #4a4a4a;
-  --text-muted: #6b6b6b;
-  --border: #e0dbd4;
+  /* Sunset Tide — Warm Desert Tones */
+  --primary: #C47A5A;
+  --primary-light: #D49272;
+  --primary-dark: #8A4A3A;
+  --primary-50: #FDF3EE;
+  --primary-100: #F0D0B8;
+
+  /* Sand */
+  --sand: #E8B8A0;
+  --sand-light: #F0D0B8;
+
+  /* Ocean / Aqua */
+  --aqua: #5AA8A0;
+  --aqua-light: #7BBAB0;
+  --aqua-pale: #A8D8D0;
+  --aqua-50: #EDF7F6;
+
+  /* Metallic Gold */
+  --gold-dark: #A07828;
+  --gold: #C9963A;
+  --gold-light: #DDB04E;
+  --gold-bright: #E8C36A;
+
+  /* Backgrounds */
+  --cream: #FBF0E8;
+  --warm-white: #FDF8F4;
+
+  /* Text */
+  --text-primary: #2A1E1A;
+  --text-secondary: #4A3E38;
+  --text-muted: #A89890;
+  --text-light: #FFF8F2;
+
+  /* Border */
+  --border: #E8D8CC;
 }
 
 @theme inline {
@@ -26,12 +44,16 @@
   --color-primary-dark: var(--primary-dark);
   --color-primary-50: var(--primary-50);
   --color-primary-100: var(--primary-100);
-  --color-terracotta: var(--terracotta);
-  --color-terracotta-light: var(--terracotta-light);
-  --color-clay: var(--clay);
   --color-sand: var(--sand);
   --color-sand-light: var(--sand-light);
-  --color-stone: var(--stone);
+  --color-aqua: var(--aqua);
+  --color-aqua-light: var(--aqua-light);
+  --color-aqua-pale: var(--aqua-pale);
+  --color-aqua-50: var(--aqua-50);
+  --color-gold-dark: var(--gold-dark);
+  --color-gold: var(--gold);
+  --color-gold-light: var(--gold-light);
+  --color-gold-bright: var(--gold-bright);
   --color-cream: var(--cream);
   --color-warm-white: var(--warm-white);
   --font-sans: var(--font-body);
@@ -45,6 +67,34 @@ body {
 
 html {
   scroll-behavior: smooth;
+}
+
+/* Metallic gold gradient — reusable */
+.gold-gradient {
+  background: linear-gradient(135deg, #A07828 0%, #C9963A 20%, #E8C36A 50%, #C9963A 80%, #A07828 100%);
+}
+
+.gold-text {
+  background: linear-gradient(135deg, #A07828 0%, #C9963A 20%, #E8C36A 50%, #C9963A 80%, #A07828 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gold-btn {
+  background: linear-gradient(135deg, #A07828 0%, #C9963A 20%, #E8C36A 50%, #C9963A 80%, #A07828 100%);
+  box-shadow: 0 4px 12px rgba(201, 150, 58, 0.3);
+  color: #fff;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+}
+.gold-btn:hover {
+  background: linear-gradient(135deg, #8A6820 0%, #B8862E 20%, #DDB04E 50%, #B8862E 80%, #8A6820 100%);
+  box-shadow: 0 6px 16px rgba(201, 150, 58, 0.4);
+}
+
+/* Hero sunset gradient */
+.hero-gradient {
+  background: linear-gradient(175deg, #8A4A3A 0%, #C47A5A 20%, #D49880 40%, #E8B8A0 55%, #7BBAB0 70%, #5AA8A0 85%, #4A9890 100%);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -63,7 +113,7 @@ html {
 
 /* Focus ring utility */
 :focus-visible {
-  outline: 2px solid var(--primary);
+  outline: 2px solid var(--aqua);
   outline-offset: 2px;
   border-radius: 4px;
 }
@@ -72,6 +122,6 @@ input:focus-visible,
 select:focus-visible,
 textarea:focus-visible {
   outline: none;
-  border-color: var(--primary);
-  box-shadow: 0 0 0 3px rgba(160, 114, 91, 0.15);
+  border-color: var(--aqua);
+  box-shadow: 0 0 0 3px rgba(90, 168, 160, 0.15);
 }

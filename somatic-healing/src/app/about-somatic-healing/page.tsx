@@ -153,7 +153,7 @@ export default function AboutSomaticHealing() {
             <div className="space-y-3">
               {signs.map((sign) => (
                 <div key={sign} className="flex items-start gap-3 bg-cream rounded-lg p-4">
-                  <CheckCircle size={18} className="text-primary-dark shrink-0 mt-0.5" />
+                  <CheckCircle size={18} className="text-aqua shrink-0 mt-0.5" />
                   <p className="text-sm text-[var(--text-secondary)]">{sign}</p>
                 </div>
               ))}
@@ -184,7 +184,7 @@ export default function AboutSomaticHealing() {
           </div>
 
           {/* CTA */}
-          <div className="bg-primary-50 rounded-2xl p-8 sm:p-12 text-center">
+          <div className="bg-aqua-50 rounded-2xl p-8 sm:p-12 text-center">
             <h2
               className="text-2xl font-bold text-[var(--text-primary)] mb-4"
               style={{ fontFamily: "var(--font-heading)" }}
@@ -196,7 +196,7 @@ export default function AboutSomaticHealing() {
             </p>
             <Link
               href="/find-a-therapist"
-              className="inline-flex items-center gap-2 bg-primary hover:bg-primary-dark text-white font-medium px-8 py-3 rounded-lg transition-colors"
+              className="inline-flex items-center gap-2 gold-btn font-medium px-8 py-3 rounded-lg"
             >
               Find a Therapist <ArrowRight size={16} />
             </Link>

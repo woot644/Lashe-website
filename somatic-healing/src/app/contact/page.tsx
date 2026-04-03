@@ -50,8 +50,8 @@ export default function Contact() {
             <div className="lg:col-span-2">
               {submitted ? (
                 <div className="bg-primary-50 rounded-xl p-8 sm:p-12 text-center">
-                  <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-5">
-                    <Send size={24} className="text-primary-dark" />
+                  <div className="w-14 h-14 rounded-full bg-aqua-50 flex items-center justify-center mx-auto mb-5">
+                    <Send size={24} className="text-aqua" />
                   </div>
                   <h2
                     className="text-2xl font-bold text-[var(--text-primary)] mb-3"
@@ -76,7 +76,7 @@ export default function Contact() {
                         required
                         value={formData.name}
                         onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                        className="w-full px-4 py-3 rounded-lg bg-cream border border-[var(--border)] text-sm focus:outline-none focus:border-primary transition-colors"
+                        className="w-full px-4 py-3 rounded-lg bg-cream border border-[var(--border)] text-sm focus:outline-none focus:border-aqua transition-colors"
                         placeholder="Full name"
                       />
                     </div>
@@ -90,7 +90,7 @@ export default function Contact() {
                         required
                         value={formData.email}
                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                        className="w-full px-4 py-3 rounded-lg bg-cream border border-[var(--border)] text-sm focus:outline-none focus:border-primary transition-colors"
+                        className="w-full px-4 py-3 rounded-lg bg-cream border border-[var(--border)] text-sm focus:outline-none focus:border-aqua transition-colors"
                         placeholder="you@example.com"
                       />
                     </div>
@@ -104,7 +104,7 @@ export default function Contact() {
                       id="type"
                       value={formData.type}
                       onChange={(e) => setFormData({ ...formData, type: e.target.value })}
-                      className="w-full px-4 py-3 rounded-lg bg-cream border border-[var(--border)] text-sm focus:outline-none focus:border-primary transition-colors appearance-none"
+                      className="w-full px-4 py-3 rounded-lg bg-cream border border-[var(--border)] text-sm focus:outline-none focus:border-aqua transition-colors appearance-none"
                     >
                       {enquiryTypes.map((t) => (
                         <option key={t.value} value={t.value}>
@@ -124,14 +124,14 @@ export default function Contact() {
                       rows={6}
                       value={formData.message}
                       onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                      className="w-full px-4 py-3 rounded-lg bg-cream border border-[var(--border)] text-sm focus:outline-none focus:border-primary transition-colors resize-none"
+                      className="w-full px-4 py-3 rounded-lg bg-cream border border-[var(--border)] text-sm focus:outline-none focus:border-aqua transition-colors resize-none"
                       placeholder="Tell us how we can help..."
                     />
                   </div>
 
                   <button
                     type="submit"
-                    className="inline-flex items-center gap-2 bg-primary hover:bg-primary-dark text-white font-medium px-8 py-3 rounded-lg transition-colors text-sm"
+                    className="inline-flex items-center gap-2 gold-btn font-medium px-8 py-3 rounded-lg text-sm"
                   >
                     Send Message <Send size={16} />
                   </button>
@@ -147,14 +147,14 @@ export default function Contact() {
                 </h3>
                 <div className="space-y-4">
                   <div className="flex items-start gap-3">
-                    <Mail size={16} className="text-primary-dark shrink-0 mt-0.5" />
+                    <Mail size={16} className="text-aqua shrink-0 mt-0.5" />
                     <div>
                       <p className="text-sm font-medium text-[var(--text-primary)]">Email</p>
                       <p className="text-sm text-[var(--text-secondary)]">hello@somatichealingaustralia.com.au</p>
                     </div>
                   </div>
                   <div className="flex items-start gap-3">
-                    <MapPin size={16} className="text-primary-dark shrink-0 mt-0.5" />
+                    <MapPin size={16} className="text-aqua shrink-0 mt-0.5" />
                     <div>
                       <p className="text-sm font-medium text-[var(--text-primary)]">Location</p>
                       <p className="text-sm text-[var(--text-secondary)]">Brisbane, Queensland, Australia</p>
@@ -172,7 +172,7 @@ export default function Contact() {
                 </p>
                 <a
                   href="/for-practitioners"
-                  className="text-sm font-medium text-primary-dark hover:text-primary-dark transition-colors"
+                  className="text-sm font-medium text-aqua hover:text-aqua transition-colors"
                 >
                   Learn about listing your practice &rarr;
                 </a>

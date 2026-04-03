@@ -50,7 +50,7 @@ export default async function PractitionerProfile({ params }: { params: Promise<
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
           <Link
             href="/find-a-therapist"
-            className="inline-flex items-center gap-1.5 text-sm text-[var(--text-secondary)] hover:text-primary-dark transition-colors"
+            className="inline-flex items-center gap-1.5 text-sm text-[var(--text-secondary)] hover:text-aqua transition-colors"
           >
             <ArrowLeft size={14} /> Back to search results
           </Link>
@@ -78,7 +78,7 @@ export default async function PractitionerProfile({ params }: { params: Promise<
                   {p.fullName}
                 </h1>
                 {p.verified && (
-                  <span className="inline-flex items-center gap-1 bg-primary/10 text-primary-dark text-xs font-medium px-2.5 py-1 rounded-full">
+                  <span className="inline-flex items-center gap-1 bg-aqua-50 text-aqua text-xs font-medium px-2.5 py-1 rounded-full">
                     <Shield size={12} /> Verified
                   </span>
                 )}
@@ -142,7 +142,7 @@ export default async function PractitionerProfile({ params }: { params: Promise<
                 </h2>
                 <div className="flex flex-wrap gap-2">
                   {p.modalities.map((mod) => (
-                    <span key={mod} className="bg-primary-50 text-primary-dark px-4 py-2 rounded-full text-sm font-medium">
+                    <span key={mod} className="bg-[#A8D8D0] text-[#5AA8A0] px-4 py-2 rounded-full text-sm font-medium">
                       {mod}
                     </span>
                   ))}
@@ -191,18 +191,18 @@ export default async function PractitionerProfile({ params }: { params: Promise<
                 <div className="space-y-3 mb-6">
                   <div className="flex items-center gap-3 text-sm">
                     {p.sessionTypes === "telehealth" ? (
-                      <Video size={16} className="text-primary-dark shrink-0" />
+                      <Video size={16} className="text-aqua shrink-0" />
                     ) : (
-                      <Building2 size={16} className="text-primary-dark shrink-0" />
+                      <Building2 size={16} className="text-aqua shrink-0" />
                     )}
                     <span className="text-[var(--text-secondary)]">{sessionTypeLabels[p.sessionTypes]}</span>
                   </div>
                   <div className="flex items-center gap-3 text-sm">
-                    <Clock size={16} className="text-primary-dark shrink-0" />
+                    <Clock size={16} className="text-aqua shrink-0" />
                     <span className="text-[var(--text-secondary)]">{p.sessionLength}</span>
                   </div>
                   <div className="flex items-center gap-3 text-sm">
-                    <DollarSign size={16} className="text-primary-dark shrink-0" />
+                    <DollarSign size={16} className="text-aqua shrink-0" />
                     <span className="text-[var(--text-secondary)]">
                       ${p.feeRange.min} &ndash; ${p.feeRange.max} per session
                     </span>
@@ -214,14 +214,14 @@ export default async function PractitionerProfile({ params }: { params: Promise<
                     href={p.bookingUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center justify-center gap-2 w-full bg-primary hover:bg-primary-dark text-white font-medium py-3 rounded-lg transition-colors text-sm"
+                    className="flex items-center justify-center gap-2 w-full gold-btn font-medium py-3 rounded-lg text-sm"
                   >
                     Book a Session <ExternalLink size={14} />
                   </a>
                 ) : (
                   <Link
                     href={`/contact?practitioner=${p.slug}`}
-                    className="flex items-center justify-center gap-2 w-full bg-primary hover:bg-primary-dark text-white font-medium py-3 rounded-lg transition-colors text-sm"
+                    className="flex items-center justify-center gap-2 w-full gold-btn font-medium py-3 rounded-lg text-sm"
                   >
                     Send an Enquiry <Mail size={14} />
                   </Link>

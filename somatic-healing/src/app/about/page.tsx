@@ -79,8 +79,8 @@ export default function About() {
               },
             ].map((v) => (
               <div key={v.title} className="text-center">
-                <div className="w-12 h-12 rounded-2xl bg-primary-50 flex items-center justify-center mx-auto mb-4">
-                  <v.icon size={22} className="text-primary-dark" />
+                <div className="w-12 h-12 rounded-2xl bg-aqua-50 flex items-center justify-center mx-auto mb-4">
+                  <v.icon size={22} className="text-aqua" />
                 </div>
                 <h3 className="text-lg font-semibold text-[var(--text-primary)] mb-2" style={{ fontFamily: "var(--font-heading)" }}>
                   {v.title}
@@ -144,13 +144,13 @@ export default function About() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               href="/find-a-therapist"
-              className="inline-flex items-center justify-center gap-2 bg-primary hover:bg-primary-dark text-white font-medium px-8 py-3 rounded-lg transition-colors"
+              className="inline-flex items-center justify-center gap-2 gold-btn font-medium px-8 py-3 rounded-lg"
             >
               Find a Therapist <ArrowRight size={16} />
             </Link>
             <Link
               href="/for-practitioners"
-              className="inline-flex items-center justify-center gap-2 border border-[var(--border)] text-[var(--text-secondary)] hover:border-primary hover:text-primary-dark font-medium px-8 py-3 rounded-lg transition-colors"
+              className="inline-flex items-center justify-center gap-2 border border-[var(--border)] text-[var(--text-secondary)] hover:border-aqua hover:text-aqua font-medium px-8 py-3 rounded-lg transition-colors"
             >
               I&apos;m a Practitioner
             </Link>
