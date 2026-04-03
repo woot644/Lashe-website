@@ -18,12 +18,12 @@ const therapyTypes = [
   {
     name: "Sensorimotor Psychotherapy",
     description:
-      "This approach combines talk therapy with careful attention to your body\u2019s physical experience \u2014 your posture, gestures, movement, and sensation. It is particularly effective for trauma, attachment difficulties, and emotional patterns that feel stuck. A sensorimotor psychotherapist helps you notice what your body does when certain feelings arise, and works with those patterns directly.",
+      "This approach combines talk therapy with careful attention to your body\u2019s physical experience — your posture, gestures, movement, and sensation. It is particularly effective for trauma, attachment difficulties, and emotional patterns that feel stuck. A sensorimotor psychotherapist helps you notice what your body does when certain feelings arise, and works with those patterns directly.",
   },
   {
     name: "Trauma Release Exercises (TRE)",
     description:
-      "TRE involves a series of simple exercises designed to activate your body\u2019s natural tremoring mechanism \u2014 a built-in way of releasing deep muscular tension. Many people describe it as finally letting go of something they did not know they were carrying. TRE can be done individually or in groups, and once learned, can be practised on your own.",
+      "TRE involves a series of simple exercises designed to activate your body\u2019s natural tremoring mechanism — a built-in way of releasing deep muscular tension. Many people describe it as finally letting go of something they did not know they were carrying. TRE can be done individually or in groups, and once learned, can be practised on your own.",
   },
   {
     name: "Body Psychotherapy",
@@ -33,14 +33,14 @@ const therapyTypes = [
 ];
 
 const signs = [
-  "You carry persistent tension in your body \u2014 jaw, shoulders, stomach, chest \u2014 that does not have a clear medical cause",
+  "You carry persistent tension in your body — jaw, shoulders, stomach, chest — that does not have a clear medical cause",
   "Anxiety shows up physically: racing heart, tight chest, churning stomach, or a feeling of being constantly on edge",
   "You feel emotionally numb, shut down, or disconnected from your body",
-  "You have experienced trauma \u2014 whether a single event or ongoing stress \u2014 that talking about has not fully resolved",
+  "You have experienced trauma — whether a single event or ongoing stress — that talking about has not fully resolved",
   "Grief, loss, or emotional pain feels like it has settled into your body",
   "You feel stuck in patterns you cannot think your way out of",
   "Talk therapy has been helpful but has not addressed everything",
-  "You notice your body reacting before your mind catches up \u2014 flinching, bracing, freezing, or shutting down",
+  "You notice your body reacting before your mind catches up — flinching, bracing, freezing, or shutting down",
 ];
 
 export default function AboutSomaticHealing() {
@@ -56,7 +56,7 @@ export default function AboutSomaticHealing() {
             What Is Somatic Healing?
           </h1>
           <p className="text-lg text-[var(--text-secondary)] leading-relaxed">
-            If something in your body feels stuck, tense, or unresolved \u2014 and talking about it has not been enough \u2014 somatic therapy may be what you are looking for.
+            If something in your body feels stuck, tense, or unresolved — and talking about it has not been enough — somatic therapy may be what you are looking for.
           </p>
         </div>
       </section>
@@ -67,13 +67,13 @@ export default function AboutSomaticHealing() {
           {/* Opening */}
           <div className="prose-custom space-y-5 text-[var(--text-secondary)] leading-relaxed mb-16">
             <p>
-              You might not have a name for what you are feeling. Maybe it is a tightness in your chest that never fully goes away. A jaw that clenches in your sleep. A constant feeling of being braced for something, even when nothing is wrong. Or maybe it is the opposite \u2014 a numbness, a disconnection, a sense that you are watching your own life from a distance.
+              You might not have a name for what you are feeling. Maybe it is a tightness in your chest that never fully goes away. A jaw that clenches in your sleep. A constant feeling of being braced for something, even when nothing is wrong. Or maybe it is the opposite — a numbness, a disconnection, a sense that you are watching your own life from a distance.
             </p>
             <p>
               These are not signs that something is wrong with you. They are signs that your body is holding onto something it has not yet been able to release.
             </p>
             <p className="text-lg font-medium text-[var(--text-primary)]" style={{ fontFamily: "var(--font-heading)" }}>
-              Somatic therapy works directly with your body \u2014 not just your thoughts \u2014 to help release what is stuck.
+              Somatic therapy works directly with your body — not just your thoughts — to help release what is stuck.
             </p>
             <p>
               The word &ldquo;somatic&rdquo; comes from the Greek word <em>soma</em>, meaning &ldquo;body.&rdquo; Somatic therapies are a family of approaches that recognise a simple truth: stress, trauma, grief, and emotional pain do not just live in your mind. They settle into your muscles, your breath, your posture, your nervous system. And sometimes, the most effective way to shift them is to work with the body directly.
@@ -90,13 +90,13 @@ export default function AboutSomaticHealing() {
             </h2>
             <div className="space-y-5 text-[var(--text-secondary)] leading-relaxed">
               <p>
-                Talk therapy \u2014 like CBT, psychotherapy, or counselling \u2014 works primarily through conversation. You talk about what happened, explore your thoughts and beliefs, and develop strategies for managing your emotions. For many people, this is genuinely helpful.
+                Talk therapy — like CBT, psychotherapy, or counselling — works primarily through conversation. You talk about what happened, explore your thoughts and beliefs, and develop strategies for managing your emotions. For many people, this is genuinely helpful.
               </p>
               <p>
                 But sometimes, understanding a problem is not enough to resolve it. You might understand exactly why you feel anxious, and still feel your chest tighten every morning. You might have processed a difficult experience intellectually, but still flinch when something reminds you of it. That is because your body has its own memory, separate from your conscious mind.
               </p>
               <p>
-                Somatic therapy works with that body memory. Instead of only asking &ldquo;What are you thinking?&rdquo; a somatic therapist also asks &ldquo;What are you noticing in your body right now?&rdquo; They help you pay attention to sensations, tension patterns, breath, and movement \u2014 and work with those directly.
+                Somatic therapy works with that body memory. Instead of only asking &ldquo;What are you thinking?&rdquo; a somatic therapist also asks &ldquo;What are you noticing in your body right now?&rdquo; They help you pay attention to sensations, tension patterns, breath, and movement — and work with those directly.
               </p>
               <p>
                 This is not an either/or choice. Many somatic therapists integrate conversation with body-based work. And many people find that somatic therapy is most powerful alongside or after talk therapy, addressing what words alone could not reach.
@@ -128,7 +128,7 @@ export default function AboutSomaticHealing() {
                 Every practitioner is different, and there is no single &ldquo;somatic therapy session.&rdquo; But here is what you might expect:
               </p>
               <p>
-                You will usually start by talking \u2014 about what brought you in, what you have been experiencing, and what you are hoping for. Your therapist will listen, and they will also be paying attention to your body: your posture, your breathing, any tension or stillness they notice.
+                You will usually start by talking — about what brought you in, what you have been experiencing, and what you are hoping for. Your therapist will listen, and they will also be paying attention to your body: your posture, your breathing, any tension or stillness they notice.
               </p>
               <p>
                 At some point, your therapist may invite you to notice what is happening in your body. &ldquo;Where do you feel that?&rdquo; &ldquo;What happens in your chest when you talk about that?&rdquo; &ldquo;Can you notice the tension in your shoulders right now?&rdquo; This is not about performing or doing it right. It is simply about turning your attention inward.
@@ -169,7 +169,7 @@ export default function AboutSomaticHealing() {
               Types of Somatic Therapy
             </h2>
             <p className="text-[var(--text-secondary)] leading-relaxed mb-8">
-              There are several different approaches within the somatic therapy family. They share a common foundation \u2014 working with the body \u2014 but each has its own methods and focus.
+              There are several different approaches within the somatic therapy family. They share a common foundation — working with the body — but each has its own methods and focus.
             </p>
             <div className="space-y-6">
               {therapyTypes.map((type) => (
