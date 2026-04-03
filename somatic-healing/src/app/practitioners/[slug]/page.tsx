@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 import { MapPin, Clock, DollarSign, Video, Building2, Star, Shield, ArrowLeft, ExternalLink, Mail } from "lucide-react";
 import { practitioners } from "@/data/practitioners";
 
@@ -45,11 +46,11 @@ export default async function PractitionerProfile({ params }: { params: Promise<
   return (
     <>
       {/* Back Link */}
-      <div className="bg-sage-50 border-b border-[var(--border)]">
+      <div className="bg-primary-50 border-b border-[var(--border)]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
           <Link
             href="/find-a-therapist"
-            className="inline-flex items-center gap-1.5 text-sm text-[var(--text-secondary)] hover:text-sage-dark transition-colors"
+            className="inline-flex items-center gap-1.5 text-sm text-[var(--text-secondary)] hover:text-primary-dark transition-colors"
           >
             <ArrowLeft size={14} /> Back to search results
           </Link>
@@ -57,13 +58,19 @@ export default async function PractitionerProfile({ params }: { params: Promise<
       </div>
 
       {/* Profile Header */}
-      <section className="bg-sage-50 pb-12 pt-8">
+      <section className="bg-primary-50 pb-12 pt-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col sm:flex-row items-start gap-6">
-            <div className="w-24 h-24 sm:w-32 sm:h-32 rounded-2xl bg-sage-100 flex items-center justify-center shrink-0">
-              <span className="text-3xl sm:text-4xl font-semibold text-sage-dark" style={{ fontFamily: "var(--font-heading)" }}>
-                {p.fullName.split(" ").map((n) => n[0]).join("")}
-              </span>
+            <div className="w-24 h-24 sm:w-32 sm:h-32 rounded-2xl bg-primary-100 overflow-hidden relative shrink-0">
+              {p.photo ? (
+                <Image src={p.photo} alt={p.fullName} fill className="object-cover" sizes="128px" />
+              ) : (
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <span className="text-3xl sm:text-4xl font-semibold text-primary-dark" style={{ fontFamily: "var(--font-heading)" }}>
+                    {p.fullName.split(" ").map((n) => n[0]).join("")}
+                  </span>
+                </div>
+              )}
             </div>
             <div className="flex-1">
               <div className="flex items-center gap-3 mb-1">
@@ -71,12 +78,12 @@ export default async function PractitionerProfile({ params }: { params: Promise<
                   {p.fullName}
                 </h1>
                 {p.verified && (
-                  <span className="inline-flex items-center gap-1 bg-sage/10 text-sage-dark text-xs font-medium px-2.5 py-1 rounded-full">
+                  <span className="inline-flex items-center gap-1 bg-primary/10 text-primary-dark text-xs font-medium px-2.5 py-1 rounded-full">
                     <Shield size={12} /> Verified
                   </span>
                 )}
               </div>
-              <p className="text-sage-dark font-medium mb-2">{p.credentials}</p>
+              <p className="text-primary-dark font-medium mb-2">{p.credentials}</p>
               <p className="text-[var(--text-secondary)] text-sm mb-3">{p.practiceName}</p>
               <div className="flex flex-wrap items-center gap-4 text-sm text-[var(--text-secondary)]">
                 <span className="flex items-center gap-1">
@@ -135,7 +142,7 @@ export default async function PractitionerProfile({ params }: { params: Promise<
                 </h2>
                 <div className="flex flex-wrap gap-2">
                   {p.modalities.map((mod) => (
-                    <span key={mod} className="bg-sage-50 text-sage-dark px-4 py-2 rounded-full text-sm font-medium">
+                    <span key={mod} className="bg-primary-50 text-primary-dark px-4 py-2 rounded-full text-sm font-medium">
                       {mod}
                     </span>
                   ))}
@@ -184,18 +191,18 @@ export default async function PractitionerProfile({ params }: { params: Promise<
                 <div className="space-y-3 mb-6">
                   <div className="flex items-center gap-3 text-sm">
                     {p.sessionTypes === "telehealth" ? (
-                      <Video size={16} className="text-sage shrink-0" />
+                      <Video size={16} className="text-primary-dark shrink-0" />
                     ) : (
-                      <Building2 size={16} className="text-sage shrink-0" />
+                      <Building2 size={16} className="text-primary-dark shrink-0" />
                     )}
                     <span className="text-[var(--text-secondary)]">{sessionTypeLabels[p.sessionTypes]}</span>
                   </div>
                   <div className="flex items-center gap-3 text-sm">
-                    <Clock size={16} className="text-sage shrink-0" />
+                    <Clock size={16} className="text-primary-dark shrink-0" />
                     <span className="text-[var(--text-secondary)]">{p.sessionLength}</span>
                   </div>
                   <div className="flex items-center gap-3 text-sm">
-                    <DollarSign size={16} className="text-sage shrink-0" />
+                    <DollarSign size={16} className="text-primary-dark shrink-0" />
                     <span className="text-[var(--text-secondary)]">
                       ${p.feeRange.min} &ndash; ${p.feeRange.max} per session
                     </span>
@@ -207,14 +214,14 @@ export default async function PractitionerProfile({ params }: { params: Promise<
                     href={p.bookingUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center justify-center gap-2 w-full bg-sage hover:bg-sage-dark text-white font-medium py-3 rounded-lg transition-colors text-sm"
+                    className="flex items-center justify-center gap-2 w-full bg-primary hover:bg-primary-dark text-white font-medium py-3 rounded-lg transition-colors text-sm"
                   >
                     Book a Session <ExternalLink size={14} />
                   </a>
                 ) : (
                   <Link
                     href={`/contact?practitioner=${p.slug}`}
-                    className="flex items-center justify-center gap-2 w-full bg-sage hover:bg-sage-dark text-white font-medium py-3 rounded-lg transition-colors text-sm"
+                    className="flex items-center justify-center gap-2 w-full bg-primary hover:bg-primary-dark text-white font-medium py-3 rounded-lg transition-colors text-sm"
                   >
                     Send an Enquiry <Mail size={14} />
                   </Link>

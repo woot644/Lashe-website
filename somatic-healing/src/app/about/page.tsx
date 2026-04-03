@@ -12,7 +12,7 @@ export default function About() {
   return (
     <>
       {/* Hero */}
-      <section className="bg-sage-50 py-16 sm:py-20">
+      <section className="bg-primary-50 py-16 sm:py-20">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1
             className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[var(--text-primary)] mb-6"
@@ -79,8 +79,8 @@ export default function About() {
               },
             ].map((v) => (
               <div key={v.title} className="text-center">
-                <div className="w-12 h-12 rounded-2xl bg-sage-50 flex items-center justify-center mx-auto mb-4">
-                  <v.icon size={22} className="text-sage" />
+                <div className="w-12 h-12 rounded-2xl bg-primary-50 flex items-center justify-center mx-auto mb-4">
+                  <v.icon size={22} className="text-primary-dark" />
                 </div>
                 <h3 className="text-lg font-semibold text-[var(--text-primary)] mb-2" style={{ fontFamily: "var(--font-heading)" }}>
                   {v.title}
@@ -130,7 +130,7 @@ export default function About() {
       </section>
 
       {/* CTA */}
-      <section className="py-16 bg-sage-50 border-t border-[var(--border)]">
+      <section className="py-16 bg-primary-50 border-t border-[var(--border)]">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2
             className="text-2xl font-bold text-[var(--text-primary)] mb-4"
@@ -144,13 +144,13 @@ export default function About() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               href="/find-a-therapist"
-              className="inline-flex items-center justify-center gap-2 bg-sage hover:bg-sage-dark text-white font-medium px-8 py-3 rounded-lg transition-colors"
+              className="inline-flex items-center justify-center gap-2 bg-primary hover:bg-primary-dark text-white font-medium px-8 py-3 rounded-lg transition-colors"
             >
               Find a Therapist <ArrowRight size={16} />
             </Link>
             <Link
               href="/for-practitioners"
-              className="inline-flex items-center justify-center gap-2 border border-[var(--border)] text-[var(--text-secondary)] hover:border-sage hover:text-sage-dark font-medium px-8 py-3 rounded-lg transition-colors"
+              className="inline-flex items-center justify-center gap-2 border border-[var(--border)] text-[var(--text-secondary)] hover:border-primary hover:text-primary-dark font-medium px-8 py-3 rounded-lg transition-colors"
             >
               I&apos;m a Practitioner
             </Link>

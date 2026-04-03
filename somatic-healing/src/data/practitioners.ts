@@ -61,7 +61,7 @@ export const practitioners: Practitioner[] = [
     fullName: "Dr Sarah Mitchell",
     credentials: "Clinical Psychologist, SE Practitioner",
     practiceName: "Embodied Psychology Sydney",
-    photo: null,
+    photo: "/images/practitioner-1.png",
     location: {
       address: "Level 3, 45 Oxford Street",
       suburb: "Darlinghurst",
@@ -105,7 +105,7 @@ export const practitioners: Practitioner[] = [
     fullName: "James Chen",
     credentials: "Somatic Experiencing Practitioner",
     practiceName: "Body First Therapy",
-    photo: null,
+    photo: "/images/practitioner-2.png",
     location: {
       address: "Suite 12, 88 Chapel Street",
       suburb: "Windsor",
@@ -145,7 +145,7 @@ export const practitioners: Practitioner[] = [
     fullName: "Emma Warrington",
     credentials: "Sensorimotor Psychotherapist",
     practiceName: "Grounded Healing Brisbane",
-    photo: null,
+    photo: "/images/practitioner-1.png",
     location: {
       address: "14 Latrobe Terrace",
       suburb: "Paddington",
@@ -190,7 +190,7 @@ export const practitioners: Practitioner[] = [
     fullName: "Dr Michael Torres",
     credentials: "Psychologist, TRE Provider",
     practiceName: "West Coast Body Therapy",
-    photo: null,
+    photo: "/images/practitioner-4.png",
     location: {
       address: "Suite 4, 120 Hay Street",
       suburb: "Subiaco",
@@ -238,7 +238,7 @@ export const practitioners: Practitioner[] = [
     fullName: "Priya Sharma",
     credentials: "Somatic Therapist, Counsellor",
     practiceName: "Inner Ground Therapy",
-    photo: null,
+    photo: "/images/practitioner-3.png",
     location: {
       address: "78 Unley Road",
       suburb: "Unley",
@@ -286,7 +286,7 @@ export const practitioners: Practitioner[] = [
     fullName: "Ben McAllister",
     credentials: "Body Psychotherapist",
     practiceName: "Embodied Therapy Hobart",
-    photo: null,
+    photo: "/images/practitioner-4.png",
     location: {
       address: "22 Murray Street",
       suburb: "Hobart",

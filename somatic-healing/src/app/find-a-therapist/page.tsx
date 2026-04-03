@@ -2,6 +2,7 @@
 
 import { useState, useMemo } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { Search, MapPin, SlidersHorizontal, Star, X } from "lucide-react";
 import { practitioners, experiences, type Practitioner } from "@/data/practitioners";
 
@@ -94,7 +95,7 @@ export default function FindATherapist() {
   return (
     <>
       {/* Header */}
-      <section className="bg-sage-50 py-12 sm:py-16">
+      <section className="bg-primary-50 py-12 sm:py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl">
             <h1
@@ -123,7 +124,7 @@ export default function FindATherapist() {
                   value={locationQuery}
                   onChange={(e) => setLocationQuery(e.target.value)}
                   placeholder="City, suburb, or postcode"
-                  className="w-full pl-10 pr-4 py-3 rounded-lg bg-cream border border-[var(--border)] text-sm focus:outline-none focus:border-sage transition-colors"
+                  className="w-full pl-10 pr-4 py-3 rounded-lg bg-cream border border-[var(--border)] text-sm focus:outline-none focus:border-primary transition-colors"
                 />
               </div>
               <div className="flex-1 relative">
@@ -131,7 +132,7 @@ export default function FindATherapist() {
                 <select
                   value={selectedExperience}
                   onChange={(e) => setSelectedExperience(e.target.value)}
-                  className="w-full pl-10 pr-4 py-3 rounded-lg bg-cream border border-[var(--border)] text-sm focus:outline-none focus:border-sage transition-colors appearance-none text-[var(--text-secondary)]"
+                  className="w-full pl-10 pr-4 py-3 rounded-lg bg-cream border border-[var(--border)] text-sm focus:outline-none focus:border-primary transition-colors appearance-none text-[var(--text-secondary)]"
                 >
                   <option value="">What are you experiencing?</option>
                   {experiences.map((exp) => (
@@ -143,8 +144,8 @@ export default function FindATherapist() {
                 onClick={() => setShowFilters(!showFilters)}
                 className={`flex items-center justify-center gap-2 px-5 py-3 rounded-lg border text-sm font-medium transition-colors ${
                   showFilters || activeFilterCount > 0
-                    ? "bg-sage text-white border-sage"
-                    : "border-[var(--border)] text-[var(--text-secondary)] hover:border-sage"
+                    ? "bg-primary text-white border-primary"
+                    : "border-[var(--border)] text-[var(--text-secondary)] hover:border-primary"
                 }`}
               >
                 <SlidersHorizontal size={16} />
@@ -165,7 +166,7 @@ export default function FindATherapist() {
                   <select
                     value={selectedState}
                     onChange={(e) => setSelectedState(e.target.value)}
-                    className="w-full px-3 py-2.5 rounded-lg bg-cream border border-[var(--border)] text-sm focus:outline-none focus:border-sage"
+                    className="w-full px-3 py-2.5 rounded-lg bg-cream border border-[var(--border)] text-sm focus:outline-none focus:border-primary"
                   >
                     <option value="">All states</option>
                     {states.map((s) => (
@@ -178,7 +179,7 @@ export default function FindATherapist() {
                   <select
                     value={selectedSessionType}
                     onChange={(e) => setSelectedSessionType(e.target.value)}
-                    className="w-full px-3 py-2.5 rounded-lg bg-cream border border-[var(--border)] text-sm focus:outline-none focus:border-sage"
+                    className="w-full px-3 py-2.5 rounded-lg bg-cream border border-[var(--border)] text-sm focus:outline-none focus:border-primary"
                   >
                     <option value="">Any</option>
                     {sessionTypeOptions.map((t) => (
@@ -191,7 +192,7 @@ export default function FindATherapist() {
                   <select
                     value={selectedGender}
                     onChange={(e) => setSelectedGender(e.target.value)}
-                    className="w-full px-3 py-2.5 rounded-lg bg-cream border border-[var(--border)] text-sm focus:outline-none focus:border-sage"
+                    className="w-full px-3 py-2.5 rounded-lg bg-cream border border-[var(--border)] text-sm focus:outline-none focus:border-primary"
                   >
                     <option value="">No preference</option>
                     {genderOptions.map((g) => (
@@ -204,7 +205,7 @@ export default function FindATherapist() {
                   <select
                     value={selectedAvailability}
                     onChange={(e) => setSelectedAvailability(e.target.value)}
-                    className="w-full px-3 py-2.5 rounded-lg bg-cream border border-[var(--border)] text-sm focus:outline-none focus:border-sage"
+                    className="w-full px-3 py-2.5 rounded-lg bg-cream border border-[var(--border)] text-sm focus:outline-none focus:border-primary"
                   >
                     <option value="">Any</option>
                     {availabilityOptions.map((a) => (
@@ -226,7 +227,7 @@ export default function FindATherapist() {
               {(locationQuery || selectedExperience || activeFilterCount > 0) && (
                 <button
                   onClick={clearFilters}
-                  className="text-xs text-sage hover:text-sage-dark flex items-center gap-1"
+                  className="text-xs text-primary-dark hover:text-primary-dark flex items-center gap-1"
                 >
                   <X size={12} /> Clear all
                 </button>
@@ -235,7 +236,7 @@ export default function FindATherapist() {
             <select
               value={sortBy}
               onChange={(e) => setSortBy(e.target.value as "relevance" | "rating")}
-              className="text-sm border border-[var(--border)] rounded-lg px-3 py-2 bg-white focus:outline-none focus:border-sage"
+              className="text-sm border border-[var(--border)] rounded-lg px-3 py-2 bg-white focus:outline-none focus:border-primary"
             >
               <option value="relevance">Sort by relevance</option>
               <option value="rating">Sort by rating</option>
@@ -259,7 +260,7 @@ export default function FindATherapist() {
               </p>
               <button
                 onClick={clearFilters}
-                className="text-sm text-sage hover:text-sage-dark font-medium"
+                className="text-sm text-primary-dark hover:text-primary-dark font-medium"
               >
                 Clear all filters
               </button>
@@ -275,16 +276,22 @@ function PractitionerCard({ practitioner: p }: { practitioner: Practitioner }) {
   return (
     <Link
       href={`/practitioners/${p.slug}`}
-      className="bg-white rounded-xl border border-[var(--border)] overflow-hidden hover:shadow-md transition-shadow group"
+      className="bg-white rounded-xl border border-[var(--border)] shadow-sm overflow-hidden hover:shadow-lg transition-all duration-200 group cursor-pointer"
     >
-      <div className="aspect-[3/1] bg-sage-50 relative flex items-center justify-center">
-        <div className="w-16 h-16 rounded-full bg-sage-100 flex items-center justify-center">
-          <span className="text-xl font-semibold text-sage-dark" style={{ fontFamily: "var(--font-heading)" }}>
-            {p.fullName.split(" ").map((n) => n[0]).join("")}
-          </span>
-        </div>
+      <div className="aspect-[3/1] bg-primary-50 relative overflow-hidden">
+        {p.photo ? (
+          <Image src={p.photo} alt={p.fullName} fill className="object-cover group-hover:scale-105 transition-transform duration-300" sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw" />
+        ) : (
+          <div className="absolute inset-0 flex items-center justify-center">
+            <div className="w-16 h-16 rounded-full bg-primary-100 flex items-center justify-center">
+              <span className="text-xl font-semibold text-primary-dark" style={{ fontFamily: "var(--font-heading)" }}>
+                {p.fullName.split(" ").map((n) => n[0]).join("")}
+              </span>
+            </div>
+          </div>
+        )}
         {p.listingTier === "featured" && (
-          <span className="absolute top-3 right-3 bg-sage text-white text-[10px] font-semibold px-2 py-0.5 rounded-full uppercase tracking-wide">
+          <span className="absolute top-3 right-3 bg-primary text-white text-[10px] font-semibold px-2 py-0.5 rounded-full uppercase tracking-wide z-10">
             Featured
           </span>
         )}
@@ -292,16 +299,16 @@ function PractitionerCard({ practitioner: p }: { practitioner: Practitioner }) {
 
       <div className="p-5">
         <div className="flex items-start justify-between mb-1">
-          <h3 className="font-semibold text-[var(--text-primary)] group-hover:text-sage-dark transition-colors">
+          <h3 className="font-semibold text-[var(--text-primary)] group-hover:text-primary-dark transition-colors">
             {p.fullName}
           </h3>
           {p.verified && (
-            <span className="text-[10px] bg-sage-50 text-sage-dark font-medium px-1.5 py-0.5 rounded">
+            <span className="text-[10px] bg-primary-50 text-primary-dark font-medium px-1.5 py-0.5 rounded">
               Verified
             </span>
           )}
         </div>
-        <p className="text-xs text-sage-dark mb-2">{p.credentials}</p>
+        <p className="text-xs text-primary-dark mb-2">{p.credentials}</p>
         <div className="flex items-center gap-1 text-xs text-[var(--text-muted)] mb-3">
           <MapPin size={12} />
           {p.location.suburb}, {p.location.city} {p.location.state}
