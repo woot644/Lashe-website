@@ -1,0 +1,48 @@
+@import "tailwindcss";
+
+:root {
+  --sage: #b8755a;
+  --sage-light: #cc917a;
+  --sage-dark: #9a5e45;
+  --sage-50: #faf5f2;
+  --sage-100: #f0e4de;
+  --terracotta: #c4836a;
+  --terracotta-light: #d4a08b;
+  --clay: #b8956a;
+  --sand: #e8ddd0;
+  --sand-light: #f5f0e8;
+  --stone: #a09888;
+  --cream: #faf8f5;
+  --warm-white: #fdfcfa;
+  --text-primary: #2c2c2c;
+  --text-secondary: #5a5a5a;
+  --text-muted: #8a8a8a;
+  --border: #e5e0d8;
+}
+
+@theme inline {
+  --color-sage: var(--sage);
+  --color-sage-light: var(--sage-light);
+  --color-sage-dark: var(--sage-dark);
+  --color-sage-50: var(--sage-50);
+  --color-sage-100: var(--sage-100);
+  --color-terracotta: var(--terracotta);
+  --color-terracotta-light: var(--terracotta-light);
+  --color-clay: var(--clay);
+  --color-sand: var(--sand);
+  --color-sand-light: var(--sand-light);
+  --color-stone: var(--stone);
+  --color-cream: var(--cream);
+  --color-warm-white: var(--warm-white);
+  --font-sans: var(--font-body);
+  --font-serif: var(--font-heading);
+}
+
+body {
+  background: var(--warm-white);
+  color: var(--text-primary);
+}
+
+html {
+  scroll-behavior: smooth;
+}
