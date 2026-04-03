@@ -2,13 +2,14 @@
 
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { User, FileText, Mail, BarChart3, LogOut } from "lucide-react";
+import { User, FileText, Mail, BarChart3, CreditCard, LogOut } from "lucide-react";
 import { createClient } from "@/lib/supabase-browser";
 
 const navItems = [
   { href: "/dashboard", label: "Overview", icon: BarChart3 },
   { href: "/dashboard/profile", label: "Edit Profile", icon: FileText },
   { href: "/dashboard/enquiries", label: "Enquiries", icon: Mail },
+  { href: "/dashboard/billing", label: "Billing & Plan", icon: CreditCard },
 ];
 
 export function DashboardNav({ userId, userEmail }: { userId: string; userEmail: string }) {
