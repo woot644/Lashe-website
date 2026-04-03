@@ -2,9 +2,10 @@
 
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { Save, Upload, Loader2 } from "lucide-react";
+import { Save, Loader2 } from "lucide-react";
 import { createClient } from "@/lib/supabase-browser";
 import { experiences, modalities as allModalities } from "@/data/practitioners";
+import { PhotoUpload } from "./photo-upload";
 
 const states = ["NSW", "VIC", "QLD", "WA", "SA", "TAS", "ACT", "NT"];
 const sessionTypeOptions = [
@@ -251,6 +252,17 @@ export default function ProfileEditor() {
       )}
       {saved && (
         <div className="bg-emerald-50 text-emerald-700 text-sm rounded-lg p-3">Profile saved successfully.</div>
+      )}
+
+      {/* Photo Upload */}
+      {practitionerId && (
+        <Section title="Profile Photo">
+          <PhotoUpload
+            currentUrl={null}
+            practitionerId={practitionerId}
+            onUploaded={() => {}}
+          />
+        </Section>
       )}
 
       {/* Basic Info */}

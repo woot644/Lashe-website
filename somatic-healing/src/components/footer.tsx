@@ -25,7 +25,7 @@ export function Footer() {
               <Link href="/find-a-therapist" className="block text-sm hover:text-[var(--text-light)] transition-colors">Find a Therapist</Link>
               <Link href="/about-somatic-healing" className="block text-sm hover:text-[var(--text-light)] transition-colors">What Is Somatic Healing?</Link>
               <Link href="/about-somatic-healing" className="block text-sm hover:text-[var(--text-light)] transition-colors">Types of Somatic Therapy</Link>
-              <Link href="/about-somatic-healing" className="block text-sm hover:text-[var(--text-light)] transition-colors">What to Expect in a Session</Link>
+              <Link href="/locations" className="block text-sm hover:text-[var(--text-light)] transition-colors">Browse by Location</Link>
             </div>
           </div>
 
