@@ -46,6 +46,7 @@ export function Footer() {
               <Link href="/contact" className="block text-sm hover:text-[var(--text-light)] transition-colors">Contact</Link>
               <Link href="/privacy" className="block text-sm hover:text-[var(--text-light)] transition-colors">Privacy Policy</Link>
               <Link href="/terms" className="block text-sm hover:text-[var(--text-light)] transition-colors">Terms of Use</Link>
+              <Link href="/admin/login" className="block text-sm hover:text-[var(--text-light)] transition-colors">Admin</Link>
             </div>
           </div>
         </div>

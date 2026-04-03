@@ -1,8 +1,13 @@
+import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase-server";
 import Link from "next/link";
 import { Users, Shield, Clock, Eye } from "lucide-react";
+import { getAdminSession } from "@/lib/admin-auth";
 
 export default async function AdminDashboard() {
+  const admin = await getAdminSession();
+  if (!admin) redirect("/admin/login");
+
   const supabase = await createClient();
   if (!supabase) return null;
 

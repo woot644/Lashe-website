@@ -1,7 +1,12 @@
+import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase-server";
 import { AdminPractitionerList } from "./practitioner-list";
+import { getAdminSession } from "@/lib/admin-auth";
 
 export default async function AdminPractitioners() {
+  const admin = await getAdminSession();
+  if (!admin) redirect("/admin/login");
+
   const supabase = await createClient();
   if (!supabase) return null;
 
