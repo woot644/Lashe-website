@@ -126,26 +126,39 @@ export async function getPractitionerBySlug(
 
 /**
  * Fetch all practitioner slugs for static generation.
+ * Uses direct fetch instead of cookies-based client since this runs at build time.
  */
 export async function getAllPractitionerSlugs(): Promise<string[]> {
-  const supabase = await createClient();
-  if (!supabase) {
+  const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
+  const key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+
+  if (!url || !key) {
     return staticPractitioners.map((p) => p.slug);
   }
 
-  const { data } = await supabase
-    .from("practitioners")
-    .select("slug")
-    .eq("published", true);
+  try {
+    const res = await fetch(
+      `${url}/rest/v1/practitioners?select=slug&published=eq.true`,
+      {
+        headers: {
+          apikey: key,
+          Authorization: `Bearer ${key}`,
+        },
+        next: { revalidate: 300 },
+      }
+    );
 
-  if (!data || data.length === 0) {
+    if (!res.ok) {
+      return staticPractitioners.map((p) => p.slug);
+    }
+
+    const data = await res.json();
+    const dbSlugs = (data as { slug: string }[]).map((r) => r.slug);
+    const staticSlugs = staticPractitioners.map((p) => p.slug);
+    return [...new Set([...dbSlugs, ...staticSlugs])];
+  } catch {
     return staticPractitioners.map((p) => p.slug);
   }
-
-  // Merge DB slugs with static slugs so demo profiles always work
-  const dbSlugs = data.map((r) => r.slug);
-  const staticSlugs = staticPractitioners.map((p) => p.slug);
-  return [...new Set([...dbSlugs, ...staticSlugs])];
 }
 
 /**
