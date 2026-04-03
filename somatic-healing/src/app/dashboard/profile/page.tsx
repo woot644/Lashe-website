@@ -86,6 +86,7 @@ export default function ProfileEditor() {
   useEffect(() => {
     async function load() {
       const supabase = createClient();
+      if (!supabase) return;
       const { data: { user } } = await supabase.auth.getUser();
       if (!user) return;
 
@@ -150,6 +151,7 @@ export default function ProfileEditor() {
     setSaved(false);
 
     const supabase = createClient();
+    if (!supabase) return;
     const { data: { user } } = await supabase.auth.getUser();
     if (!user) return;
 

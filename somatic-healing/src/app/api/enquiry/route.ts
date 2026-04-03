@@ -14,6 +14,9 @@ export async function POST(request: Request) {
     }
 
     const supabase = await createClient();
+    if (!supabase) {
+      return NextResponse.json({ error: "Service not configured." }, { status: 503 });
+    }
 
     const { error } = await supabase.from("enquiries").insert({
       practitioner_id,

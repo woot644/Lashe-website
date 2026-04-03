@@ -21,6 +21,11 @@ export default function SignUp() {
     setLoading(true);
 
     const supabase = createClient();
+    if (!supabase) {
+      setError("Authentication service is not configured.");
+      setLoading(false);
+      return;
+    }
 
     const { error: signUpError } = await supabase.auth.signUp({
       email: formData.email,

@@ -4,6 +4,7 @@ import { MarkReadButton } from "./mark-read-button";
 
 export default async function Enquiries() {
   const supabase = await createClient();
+  if (!supabase) return null;
   const { data: { user } } = await supabase.auth.getUser();
 
   // Get practitioner ID

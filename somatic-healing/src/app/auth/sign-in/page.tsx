@@ -21,6 +21,11 @@ function SignInForm() {
     setLoading(true);
 
     const supabase = createClient();
+    if (!supabase) {
+      setError("Authentication service is not configured.");
+      setLoading(false);
+      return;
+    }
 
     const { error: signInError } = await supabase.auth.signInWithPassword({
       email: formData.email,

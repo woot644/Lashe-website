@@ -8,6 +8,7 @@ export function MarkReadButton({ enquiryId }: { enquiryId: string }) {
 
   async function handleMarkRead() {
     const supabase = createClient();
+    if (!supabase) return;
     await supabase
       .from("enquiries")
       .update({ read: true })

@@ -17,7 +17,7 @@ export function DashboardNav({ userId, userEmail }: { userId: string; userEmail:
 
   async function handleSignOut() {
     const supabase = createClient();
-    await supabase.auth.signOut();
+    if (supabase) await supabase.auth.signOut();
     router.push("/");
     router.refresh();
   }
