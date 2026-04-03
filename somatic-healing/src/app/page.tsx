@@ -1,11 +1,16 @@
 import Link from "next/link";
 import Image from "next/image";
 import { Search, MapPin, Calendar, CheckCircle, ArrowRight, Shield, Users, Star } from "lucide-react";
-import { practitioners, experiences } from "@/data/practitioners";
+import { experiences } from "@/data/practitioners";
+import { getFeaturedPractitioners, getDirectoryStats } from "@/lib/data";
 
-const featuredPractitioners = practitioners.filter((p) => p.listingTier === "featured" || p.listingTier === "premium").slice(0, 4);
+export const revalidate = 300; // Revalidate every 5 minutes
 
-export default function Home() {
+export default async function Home() {
+  const [featuredPractitioners, stats] = await Promise.all([
+    getFeaturedPractitioners(4),
+    getDirectoryStats(),
+  ]);
   return (
     <>
       {/* Hero — Sunset Tide Gradient */}
@@ -221,8 +226,8 @@ export default function Home() {
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 text-center">
             {[
               { icon: Shield, num: "Verified", label: "Every practitioner\u2019s credentials are checked" },
-              { icon: Users, num: "100+", label: "Qualified practitioners listed" },
-              { icon: Star, num: "4.9", label: "Average practitioner rating" },
+              { icon: Users, num: `${stats.practitionerCount}+`, label: "Qualified practitioners listed" },
+              { icon: Star, num: String(stats.averageRating), label: "Average practitioner rating" },
               { icon: CheckCircle, num: "Free", label: "Search and browse at no cost" },
             ].map((item) => (
               <div key={item.label}>

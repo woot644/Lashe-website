@@ -2,21 +2,23 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import { MapPin, Clock, DollarSign, Video, Building2, Star, Shield, ArrowLeft, ExternalLink, Mail } from "lucide-react";
-import { practitioners } from "@/data/practitioners";
+import { getAllPractitionerSlugs, getPractitionerBySlug } from "@/lib/data";
 
-export function generateStaticParams() {
-  return practitioners.map((p) => ({ slug: p.slug }));
+export const revalidate = 300;
+
+export async function generateStaticParams() {
+  const slugs = await getAllPractitionerSlugs();
+  return slugs.map((slug) => ({ slug }));
 }
 
-export function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
-  return params.then(({ slug }) => {
-    const p = practitioners.find((pr) => pr.slug === slug);
-    if (!p) return { title: "Practitioner Not Found" };
-    return {
-      title: `${p.fullName} — ${p.credentials} | Somatic Healing Australia`,
-      description: `${p.fullName} is a verified somatic therapist in ${p.location.city}, ${p.location.state}. ${p.aboutMe.split("\n")[0].slice(0, 150)}...`,
-    };
-  });
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const p = await getPractitionerBySlug(slug);
+  if (!p) return { title: "Practitioner Not Found" };
+  return {
+    title: `${p.fullName} — ${p.credentials} | Somatic Healing Australia`,
+    description: `${p.fullName} is a verified somatic therapist in ${p.location.city}, ${p.location.state}. ${p.aboutMe.split("\n")[0].slice(0, 150)}...`,
+  };
 }
 
 const sessionTypeLabels: Record<string, string> = {
@@ -39,7 +41,7 @@ const availabilityColours: Record<string, string> = {
 
 export default async function PractitionerProfile({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const p = practitioners.find((pr) => pr.slug === slug);
+  const p = await getPractitionerBySlug(slug);
 
   if (!p) notFound();
 

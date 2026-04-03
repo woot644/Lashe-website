@@ -1,4 +1,5 @@
 export interface Practitioner {
+  id?: string;
   slug: string;
   fullName: string;
   credentials: string;
